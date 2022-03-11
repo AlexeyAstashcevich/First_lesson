@@ -18,3 +18,4 @@ gradle-app.setting
 .classpath
 SandBox/out/production/classes/ru/stqa/pft/sandbox/pointHomework/Point.class
 *.class
+*.class
