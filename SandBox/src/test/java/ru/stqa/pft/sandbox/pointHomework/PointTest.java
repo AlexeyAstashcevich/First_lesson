@@ -14,11 +14,6 @@ public class PointTest {
   }
 
   @Test
-  public void pointTest2() {
-    Assert.assertEquals(p2.getDistance(p1), 5);
-  }
-
-  @Test
   public void pointTest3() {
     Assert.assertEquals(p1.getDistance(p2), -4);
   }
