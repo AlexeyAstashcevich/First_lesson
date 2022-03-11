@@ -16,3 +16,4 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+SandBox/out/production/classes/ru/stqa/pft/sandbox/pointHomework/Point.class
