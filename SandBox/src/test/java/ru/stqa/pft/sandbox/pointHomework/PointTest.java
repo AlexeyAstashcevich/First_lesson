@@ -14,13 +14,15 @@ public class PointTest {
   }
 
   @Test
-  public void pointTest3() {
-    Assert.assertEquals(p1.getDistance(p2), -4);
+  public void pointTest2() {
+    Assert.assertNotEquals(p1.getDistance(p2), -4);
   }
 
   @Test
-  public void pointTest4() {
-    Assert.assertEquals(p2 = p1, p2 != p1);
+  public void pointTest3() {
+    Assert.assertTrue(p1.getDistance(p2)>0);
   }
 
 }
+
+
