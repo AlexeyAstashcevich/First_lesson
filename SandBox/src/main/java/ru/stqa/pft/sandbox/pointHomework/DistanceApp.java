@@ -1,7 +1,5 @@
 package ru.stqa.pft.sandbox.pointHomework;
 
-import static javax.swing.UIManager.get;
-
 public class DistanceApp {
   public static void main(String[] args) {
     Point p1 = new Point(4, 3);

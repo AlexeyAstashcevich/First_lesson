@@ -1,5 +1,7 @@
 package ru.stqa.pft.sandbox.pointHomework;
 
+import java.util.Objects;
+
 public class Point {
   private double x;
   private double y;
@@ -27,6 +29,9 @@ public class Point {
   }
 
   public double getDistance(Point p) {
+    if (Objects.isNull(p)) {
+      throw new IllegalArgumentException("Пустое значение");
+    }
     return Math.sqrt(Math.pow((this.x - p.x), 2) + Math.pow((this.y - p.y), 2));
   }
 
