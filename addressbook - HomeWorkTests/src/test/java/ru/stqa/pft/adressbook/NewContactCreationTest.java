@@ -31,7 +31,7 @@ public class NewContactCreationTest {
   public void testNewContactCreation() {
     addNewContact();
     fillNamesForms(new NamesData("Alex", "Bolduin", "Bolduin", "Boldi"));
-    addPhoto(new PhotoData("C:\\Users\\Kakaperduk\\Downloads\\Bolduin.jpg"));
+    addPhoto(new PhotoData("C:\\Users\\zbvnr\\Downloads\\Bolduin.jpg"));
     fillCompanyForms(new CompanysData("Boldo-voldo", "Fox", "Usa, Loss Angeles , 34"));
     fillPhonesForms(new PhonesData("+7895454", "+1875643", "Artsit", "none"));
     fillEmailsForms(new EmailsData("boldi@gmail.com", "boldodi@yandex.com", "boldo@gaga.com"));
