@@ -6,11 +6,11 @@ import org.testng.annotations.*;
 public class DeleteGroupTest extends TestBase {
 
   @Test
-  public void testDeleteGroup() throws Exception {
-    app.getGroupHelper().goToGroup();
+  public void testDeleteGroup()  {
+    app.getGroupNavigation().goToGroupPage();
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().deleteSelectedGroups();
-    app.goToGroupPage();
+    app.getGroupHelper().goToGroup();
     app.logOut();
 
   }
