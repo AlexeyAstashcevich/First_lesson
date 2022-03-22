@@ -1,4 +1,4 @@
-package ru.stqa.pft.adressbook;
+package ru.stqa.pft.adressbook.model;
 
 public class NamesData {
   private final String firstname;
