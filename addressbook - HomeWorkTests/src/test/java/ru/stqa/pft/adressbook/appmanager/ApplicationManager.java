@@ -8,32 +8,16 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager {
+public class ApplicationManager extends HelpBase {
 
-    WebDriver wd;
     private NavigationHelper navigationHelper;
     private ContactHelper contactHelper;
     private GroupHelper groupHelper;
 
     public ApplicationManager(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
-
-    public void login(String username, String password) {
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//input[@value='Login']")).click();
-    }
-
-
-    public void stop() {
-        wd.findElement(By.linkText("Logout")).click();
-        wd.quit();
-    }
 
     public void init() {
         wd = new FirefoxDriver();

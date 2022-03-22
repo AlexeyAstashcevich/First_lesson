@@ -10,7 +10,7 @@ public class NewContactCreationTest extends TestBase {
   public void testNewContactCreation() {
     app.getNavigationHelper().addNewContact();
     app.getContactHelper().fillNamesForms(new NamesData("Alex", "Bolduin", "Bolduin", "Boldi"));
-    app.getNavigationHelper().addPhoto(new PhotoData("C:\\Users\\zbvnr\\Downloads\\Bolduin.jpg"));
+    //app.getNavigationHelper().addPhoto(new PhotoData("C:\\Users\\Kakaperduk\\Downloads\\Bolduin.jpg"));
     app.getContactHelper().fillCompanyForms(new CompanysData("Boldo-voldo", "Fox", "Usa, Loss Angeles , 34"));
     app.getContactHelper().fillPhonesForms(new PhonesData("+7895454", "+1875643", "Artsit", "none"));
     app.getContactHelper().fillEmailsForms(new EmailsData("boldi@gmail.com", "boldodi@yandex.com", "boldo@gaga.com"));

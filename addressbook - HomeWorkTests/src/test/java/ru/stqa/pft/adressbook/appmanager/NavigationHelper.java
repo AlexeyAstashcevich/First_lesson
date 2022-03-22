@@ -5,28 +5,25 @@ import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.adressbook.model.HomepageData;
 import ru.stqa.pft.adressbook.model.PhotoData;
 
-public class NavigationHelper {
-    private  WebDriver wd;
+public class NavigationHelper extends HelpBase {
+
     public NavigationHelper(WebDriver wd) {
 
-        this.wd = wd;
+       super(wd);
     }
     public void goToHomepage() {
-        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
-        wd.findElement(By.linkText("home page")).click();
+        click(By.xpath("//div[@id='content']/form/input[21]"));
+        click(By.linkText("home page"));
     }
     public void fillHomepage(HomepageData homepageData) {
-        wd.findElement(By.name("homepage")).click();
-        wd.findElement(By.name("homepage")).clear();
-        wd.findElement(By.name("homepage")).sendKeys(homepageData.getHomepage());
+        type(homepageData.getHomepage(), By.name("homepage"));
     }
 
     public void addNewContact() {
-        wd.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
     public void addPhoto(PhotoData photoData) {
-        wd.findElement(By.name("photo")).clear();
-        wd.findElement(By.name("photo")).sendKeys(photoData.getPhotoDirectory());
+        type(photoData.getPhotoDirectory(),By.name("photo"));
     }
 }
