@@ -10,26 +10,26 @@ public class ContactHelper extends HelpBase{
         super(wd);
     }
 
-    public void fillSecondaryAddress(SecondaryAddressData secondaryAddressData) {
+    public void fillSecondaryAddress(ContactData secondaryAddressData) {
         type(secondaryAddressData.getSecondaryAdress(),By.name("address2"));
     }
 
-    public void fillCompanyForms(CompanysData companysData) {
-        type(companysData.getTitle(),By.name("title"));
-        type(companysData.getCompany(),By.name("company"));
-        type(companysData.getCompanyAdress(),By.name("address"));
+    public void fillCompanyForms(ContactData contactData) {
+        type(contactData.getTitle(),By.name("title"));
+        type(contactData.getCompany(),By.name("company"));
+        type(contactData.getCompanyAddress(),By.name("address"));
     }
-    public void fillAnyversary(AnyversaryData anyversaryData) {
+    public void fillAnyversary(ContactData datesData) {
         click(By.name("aday"));
-        select(By.name("aday"), anyversaryData.getDay());
+        select(By.name("aday"), datesData.getDay());
         click(By.xpath("//div[@id='content']/form/select[3]/option[19]"));
         click(By.name("amonth"));
-        select(By.name("amonth"), anyversaryData.getMonth());
+        select(By.name("amonth"), datesData.getMonth());
         click(By.xpath("//div[@id='content']/form/select[4]/option[12]"));
-        type(anyversaryData.getYear(),By.name("ayear"));
+        type(datesData.getYear(),By.name("ayear"));
     }
 
-    public void fillBirthday(BirthdayData birthdayData) {
+    public void fillBirthday(ContactData birthdayData) {
         click(By.name("bday"));
         select(By.name("bday"), birthdayData.getDay());
         click(By.xpath("//option[@value='15']"));
@@ -39,31 +39,31 @@ public class ContactHelper extends HelpBase{
         type(birthdayData.getYear(),By.name("byear"));
     }
 
-    public void fillEmailsForms(EmailsData emailsData) {
+    public void fillEmailsForms(ContactData emailsData) {
         type(emailsData.getEmail1(),By.name("email"));
         type(emailsData.getEmail2(),By.name("email2"));
         type(emailsData.getEmail3(),By.name("email3"));
     }
 
-    public void fillNamesForms(NamesData namesData) {
+    public void fillNamesForms(ContactData namesData) {
         type(namesData.getFirstname(),By.name("firstname"));
-        type(namesData.getMiddlename(),By.name("middlename"));
+        type(namesData.getMiddleName(),By.name("middlename"));
         type(namesData.getLastname(),By.name("lastname"));
         type(namesData.getNickname(),By.name("nickname"));
     }
 
-    public void fillNotes(NotesData notesData) {
+    public void fillNotes(ContactData notesData) {
         type(notesData.getNotes(),By.name("notes"));
     }
 
-    public void fillSecondaryPhone(SecondaryPhoneData secondaryPhoneData) {
+    public void fillSecondaryPhone(ContactData secondaryPhoneData) {
         type(secondaryPhoneData.getSecondaryPhone(),By.name("phone2"));
     }
 
-    public void fillPhonesForms(PhonesData phonesData) {
+    public void fillPhonesForms(ContactData phonesData) {
         type(phonesData.getHomePhone(),By.name("home"));
         type(phonesData.getMobilePhone(),By.name("mobile"));
-        type(phonesData.getWork(),By.name("work"));
+        type(phonesData.getWorkPhone(),By.name("work"));
         type(phonesData.getFax(),By.name("fax"));
     }
 }
