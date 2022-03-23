@@ -11,7 +11,6 @@ public class ContactHelper extends HelpBase{
     }
 
     public void fillSecondaryAddress(SecondaryAddressData secondaryAddressData) {
-        click(By.xpath("//div[@id='content']/form/select[5]/option[2]"));
         type(secondaryAddressData.getSecondaryAdress(),By.name("address2"));
     }
 

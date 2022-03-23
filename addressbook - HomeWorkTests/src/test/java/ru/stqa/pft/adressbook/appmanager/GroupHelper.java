@@ -14,5 +14,6 @@ public class GroupHelper extends HelpBase {
     public void chooseGroup(GroupData groupData) {
       click(By.name("new_group"));
       select(By.name("new_group"),groupData.getGroup());
+      click(By.xpath("//div[@id='content']/form/select[5]/option[2]"));
     }
 }
