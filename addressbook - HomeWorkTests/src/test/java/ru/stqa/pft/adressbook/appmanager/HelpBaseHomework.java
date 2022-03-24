@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class HelpBase {
+public class HelpBaseHomework {
   WebDriver wd;
 
-  public HelpBase(WebDriver wd) {
+  public HelpBaseHomework(WebDriver wd) {
     this.wd = wd;
   }
 

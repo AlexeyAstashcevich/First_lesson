@@ -2,11 +2,11 @@ package ru.stqa.pft.adressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.adressbook.model.ContactData;
+import ru.stqa.pft.adressbook.model.ContactDataHomeWork;
 
-public class NavigationHelper extends HelpBase {
+public class NavigationHelperHomework extends HelpBaseHomework {
 
-    public NavigationHelper(WebDriver wd) {
+    public NavigationHelperHomework(WebDriver wd) {
 
        super(wd);
     }
@@ -17,7 +17,7 @@ public class NavigationHelper extends HelpBase {
     public void goToHomepage() {
         click(By.linkText("home page"));
     }
-    public void fillHomepage(ContactData homepageData) {
+    public void fillHomepage(ContactDataHomeWork homepageData) {
         type(homepageData.getHomepage(), By.name("homepage"));
     }
 
@@ -25,7 +25,7 @@ public class NavigationHelper extends HelpBase {
         click(By.linkText("add new"));
     }
 
-    public void addPhoto(ContactData photoData) {
+    public void addPhoto(ContactDataHomeWork photoData) {
         insertPhoto(photoData.getPhotoDirectory());
     }
 

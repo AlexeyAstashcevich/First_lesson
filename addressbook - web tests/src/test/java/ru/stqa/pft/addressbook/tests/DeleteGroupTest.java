@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 
 public class DeleteGroupTest extends TestBase {
@@ -11,7 +11,7 @@ public class DeleteGroupTest extends TestBase {
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().deleteSelectedGroups();
     app.getGroupHelper().goToGroup();
-    app.logOut();
+    app.stop();
 
   }
 

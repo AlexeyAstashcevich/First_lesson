@@ -1,13 +1,14 @@
-package ru.stqa.pft.adressbook.tests;
+package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.adressbook.appmanager.TestBase;
-import ru.stqa.pft.adressbook.model.*;
+import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 
-public class ContactModificationTest extends TestBase {
+public class NewContactCreationTest extends TestBase {
+
   @Test
-  public void contactModification(){
-    app.getNavigationHelper().initContactModification();
+
+  public void testNewContactCreation() {
+    app.getNavigationHelper().addNewContact();
     app.getContactHelper().fillNamesForms(new ContactDataBuilder()
             .firstname("Alex")
             .middleName("Bolduin")
@@ -15,8 +16,8 @@ public class ContactModificationTest extends TestBase {
             .nickname("Boldi")
             .builder());
     app.getNavigationHelper().addPhoto(new ContactDataBuilder()
-            .photoDirectory("C:\\Bolduin.jpg")
-            .builder());
+         .photoDirectory("C:\\Bolduin.jpg")
+         .builder());
     app.getContactHelper().fillCompanyForms(new ContactDataBuilder()
             .title("Boldo-Voldo")
             .company("Fox")
@@ -58,7 +59,9 @@ public class ContactModificationTest extends TestBase {
     app.getContactHelper().fillNotes(new ContactDataBuilder()
             .notes("Best friend")
             .builder());
-    app.getNavigationHelper().updateInformation();
+    app.getNavigationHelper().submitNewContact();
     app.getNavigationHelper().goToHomepage();
+
   }
+
 }

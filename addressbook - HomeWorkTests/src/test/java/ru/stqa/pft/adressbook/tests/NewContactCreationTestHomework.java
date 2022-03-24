@@ -1,16 +1,16 @@
 package ru.stqa.pft.adressbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.adressbook.appmanager.TestBase;
+import ru.stqa.pft.adressbook.appmanager.TestBaseHomework;
 import ru.stqa.pft.adressbook.model.*;
 
-public class NewContactCreationTest extends TestBase {
+public class NewContactCreationTestHomework extends TestBaseHomework {
 
   @Test
 
   public void testNewContactCreation() {
     app.getNavigationHelper().addNewContact();
-    app.getContactHelper().fillNamesForms(new ContactDataBuilder()
+    app.getContactHelper().fillNamesForms(new ContactDataBuilderHomeWork()
             .firstname("Alex")
             .middleName("Bolduin")
             .lastname("Bolduin")
@@ -19,45 +19,45 @@ public class NewContactCreationTest extends TestBase {
     //app.getNavigationHelper().addPhoto(new ContactDataBuilder()
     //      .photoDirectory("C:\\Users\\Kakaperduk\\Downloads\\Bolduin.jpg")
      //     .builder());
-    app.getContactHelper().fillCompanyForms(new ContactDataBuilder()
+    app.getContactHelper().fillCompanyForms(new ContactDataBuilderHomeWork()
             .title("Boldo-Voldo")
             .company("Fox")
             .companyAddress("Usa, bryton beach 48")
             .builder());
-    app.getContactHelper().fillPhonesForms(new ContactDataBuilder()
+    app.getContactHelper().fillPhonesForms(new ContactDataBuilderHomeWork()
             .homePhone("+78954523")
             .fax("None")
             .mobilePhone("+735645645")
             .workPhone("+2344234432")
             .builder());
-    app.getContactHelper().fillEmailsForms(new ContactDataBuilder()
+    app.getContactHelper().fillEmailsForms(new ContactDataBuilderHomeWork()
             .email1("boldi@jojo.com")
             .email2("holo@gmail.com")
             .email3("gop@jojo.com")
             .builder());
-    app.getNavigationHelper().fillHomepage(new ContactDataBuilder()
+    app.getNavigationHelper().fillHomepage(new ContactDataBuilderHomeWork()
             .homepage("yandex.ru")
             .builder());
-    app.getContactHelper().fillBirthday(new ContactDataBuilder()
+    app.getContactHelper().fillBirthday(new ContactDataBuilderHomeWork()
             .day("15")
             .month("August")
             .year("1989")
             .builder());
-    app.getContactHelper().fillAnyversary(new ContactDataBuilder()
+    app.getContactHelper().fillAnyversary(new ContactDataBuilderHomeWork()
             .day("17")
             .month("August")
             .year("1989")
             .builder());
-    app.getGroupHelper().chooseGroup(new ContactDataBuilder()
+    app.getGroupHelper().chooseGroup(new ContactDataBuilderHomeWork()
             .group("Test1")
             .builder());
-    app.getContactHelper().fillSecondaryAddress(new ContactDataBuilder()
+    app.getContactHelper().fillSecondaryAddress(new ContactDataBuilderHomeWork()
             .secondaryAdress("Usa, Briton beach")
             .builder());
-    app.getContactHelper().fillSecondaryPhone(new ContactDataBuilder()
+    app.getContactHelper().fillSecondaryPhone(new ContactDataBuilderHomeWork()
             .secondaryPhone("48")
             .builder());
-    app.getContactHelper().fillNotes(new ContactDataBuilder()
+    app.getContactHelper().fillNotes(new ContactDataBuilderHomeWork()
             .notes("Best friend")
             .builder());
     app.getNavigationHelper().submitNewContact();

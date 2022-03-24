@@ -1,9 +1,9 @@
 package ru.stqa.pft.adressbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.adressbook.appmanager.TestBase;
+import ru.stqa.pft.adressbook.appmanager.TestBaseHomework;
 
-public class DeleteContactTest extends TestBase {
+public class DeleteContactTestHomework extends TestBaseHomework {
   @Test
   public void deleteContact(){
     app.getNavigationHelper().chooseContact();

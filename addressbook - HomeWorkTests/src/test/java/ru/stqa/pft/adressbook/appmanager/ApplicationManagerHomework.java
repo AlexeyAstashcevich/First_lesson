@@ -8,13 +8,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager extends HelpBase {
+public class ApplicationManagerHomework extends HelpBaseHomework {
 
-    private NavigationHelper navigationHelper;
-    private ContactHelper contactHelper;
-    private GroupHelper groupHelper;
+    private NavigationHelperHomework navigationHelperHomework;
+    private ContactHelperHomework contactHelperHomework;
+    private GroupHelperHomework groupHelperHomework;
 
-    public ApplicationManager(WebDriver wd) {
+    public ApplicationManagerHomework(WebDriver wd) {
         super(wd);
     }
 
@@ -23,9 +23,9 @@ public class ApplicationManager extends HelpBase {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/index.php");
-        contactHelper = new ContactHelper(wd);
-        navigationHelper = new NavigationHelper(wd);
-        groupHelper = new GroupHelper(wd);
+        contactHelperHomework = new ContactHelperHomework(wd);
+        navigationHelperHomework = new NavigationHelperHomework(wd);
+        groupHelperHomework = new GroupHelperHomework(wd);
         login("admin", "secret");
     }
 
@@ -48,16 +48,16 @@ public class ApplicationManager extends HelpBase {
     }
 
 
-    public NavigationHelper getNavigationHelper() {
-        return navigationHelper;
+    public NavigationHelperHomework getNavigationHelper() {
+        return navigationHelperHomework;
     }
 
-    public ContactHelper getContactHelper() {
-        return contactHelper;
+    public ContactHelperHomework getContactHelper() {
+        return contactHelperHomework;
     }
 
-    public GroupHelper getGroupHelper() {
-        return groupHelper;
+    public GroupHelperHomework getGroupHelper() {
+        return groupHelperHomework;
     }
 
 

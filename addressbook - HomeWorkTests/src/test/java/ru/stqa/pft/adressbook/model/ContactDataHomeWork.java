@@ -1,6 +1,6 @@
 package ru.stqa.pft.adressbook.model;
 
-public class ContactData {
+public class ContactDataHomeWork {
   private  String title;
   private  String company;
   private  String companyAddress;

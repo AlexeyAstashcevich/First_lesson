@@ -4,15 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class TestBase {
+public class TestBaseHomework {
 
-    protected ApplicationManager app;
+    protected ApplicationManagerHomework app;
 
     WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
-        app = new ApplicationManager(wd);
+        app = new ApplicationManagerHomework(wd);
         app.init();
     }
 
@@ -22,7 +22,7 @@ public class TestBase {
         app.stop();
     }
 
-    public ApplicationManager getApp() {
+    public ApplicationManagerHomework getApp() {
         return app;
     }
 

@@ -4,22 +4,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.adressbook.model.*;
 
-public class ContactHelper extends HelpBase{
-    public ContactHelper(WebDriver wd)  {
+public class ContactHelperHomework extends HelpBaseHomework {
+    public ContactHelperHomework(WebDriver wd)  {
 
         super(wd);
     }
 
-    public void fillSecondaryAddress(ContactData secondaryAddressData) {
+    public void fillSecondaryAddress(ContactDataHomeWork secondaryAddressData) {
         type(secondaryAddressData.getSecondaryAdress(),By.name("address2"));
     }
 
-    public void fillCompanyForms(ContactData contactData) {
-        type(contactData.getTitle(),By.name("title"));
-        type(contactData.getCompany(),By.name("company"));
-        type(contactData.getCompanyAddress(),By.name("address"));
+    public void fillCompanyForms(ContactDataHomeWork contactDataHomeWork) {
+        type(contactDataHomeWork.getTitle(),By.name("title"));
+        type(contactDataHomeWork.getCompany(),By.name("company"));
+        type(contactDataHomeWork.getCompanyAddress(),By.name("address"));
     }
-    public void fillAnyversary(ContactData datesData) {
+    public void fillAnyversary(ContactDataHomeWork datesData) {
         click(By.name("aday"));
         select(By.name("aday"), datesData.getDay());
         click(By.xpath("//div[@id='content']/form/select[3]/option[19]"));
@@ -29,7 +29,7 @@ public class ContactHelper extends HelpBase{
         type(datesData.getYear(),By.name("ayear"));
     }
 
-    public void fillBirthday(ContactData birthdayData) {
+    public void fillBirthday(ContactDataHomeWork birthdayData) {
         click(By.name("bday"));
         select(By.name("bday"), birthdayData.getDay());
         click(By.xpath("//option[@value='15']"));
@@ -39,28 +39,28 @@ public class ContactHelper extends HelpBase{
         type(birthdayData.getYear(),By.name("byear"));
     }
 
-    public void fillEmailsForms(ContactData emailsData) {
+    public void fillEmailsForms(ContactDataHomeWork emailsData) {
         type(emailsData.getEmail1(),By.name("email"));
         type(emailsData.getEmail2(),By.name("email2"));
         type(emailsData.getEmail3(),By.name("email3"));
     }
 
-    public void fillNamesForms(ContactData namesData) {
+    public void fillNamesForms(ContactDataHomeWork namesData) {
         type(namesData.getFirstname(),By.name("firstname"));
         type(namesData.getMiddleName(),By.name("middlename"));
         type(namesData.getLastname(),By.name("lastname"));
         type(namesData.getNickname(),By.name("nickname"));
     }
 
-    public void fillNotes(ContactData notesData) {
+    public void fillNotes(ContactDataHomeWork notesData) {
         type(notesData.getNotes(),By.name("notes"));
     }
 
-    public void fillSecondaryPhone(ContactData secondaryPhoneData) {
+    public void fillSecondaryPhone(ContactDataHomeWork secondaryPhoneData) {
         type(secondaryPhoneData.getSecondaryPhone(),By.name("phone2"));
     }
 
-    public void fillPhonesForms(ContactData phonesData) {
+    public void fillPhonesForms(ContactDataHomeWork phonesData) {
         type(phonesData.getHomePhone(),By.name("home"));
         type(phonesData.getMobilePhone(),By.name("mobile"));
         type(phonesData.getWorkPhone(),By.name("work"));
