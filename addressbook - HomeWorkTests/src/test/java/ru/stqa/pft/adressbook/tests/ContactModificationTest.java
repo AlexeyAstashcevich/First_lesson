@@ -15,7 +15,7 @@ public class ContactModificationTest extends TestBase {
             .nickname("Boldi")
             .builder());
     app.getNavigationHelper().addPhoto(new ContactDataBuilder()
-            .photoDirectory("C:\\Users\\Kakaperduk\\Downloads\\Bolduin.jpg")
+            .photoDirectory("C:\\Bolduin.jpg")
             .builder());
     app.getContactHelper().fillCompanyForms(new ContactDataBuilder()
             .title("Boldo-Voldo")

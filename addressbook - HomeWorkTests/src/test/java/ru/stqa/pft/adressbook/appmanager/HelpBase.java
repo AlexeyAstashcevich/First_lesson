@@ -21,8 +21,8 @@ public class HelpBase {
       wd.findElement(locator).sendKeys(username);
   }
 
-  protected void insertPhoto( String directory) {
-   type(directory,By.name("photo"));
+  protected void insertPhoto(String dyrectory) {
+      wd.findElement(By.name("photo")).sendKeys(dyrectory);
   }
 
   public void login(String username, String password) {
