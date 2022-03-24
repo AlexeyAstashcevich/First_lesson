@@ -12,19 +12,16 @@ public class TestBase {
     WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
+    public void setUp() {
         app = new ApplicationManager(wd);
         app.init();
     }
 
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
+    public void tearDown(){
         app.stop();
     }
 
-    public ApplicationManager getApp() {
-        return app;
-    }
 
 }

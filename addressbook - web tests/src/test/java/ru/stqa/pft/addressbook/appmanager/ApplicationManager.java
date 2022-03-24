@@ -29,7 +29,6 @@ public class ApplicationManager extends HelperBase {
         navigationHelperHomework = new NavigationHelper(wd);
         groupHelper = new GroupHelper(wd);
         groupNavigation = new GroupNavigation(wd);
-        groupHelper = new GroupHelper(wd);
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login("admin", "secret");
     }

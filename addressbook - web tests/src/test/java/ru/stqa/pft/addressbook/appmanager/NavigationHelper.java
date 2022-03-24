@@ -44,9 +44,6 @@ public class NavigationHelper extends HelperBase {
     public void initContactModification() {
         click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
     }
-    public void getPhoto(){
-        wd.findElement(By.name("photo")).sendKeys("C:\\Bolduin.jpg");
-    }
 
     public void updateInformation() {
         click(By.name("update"));
