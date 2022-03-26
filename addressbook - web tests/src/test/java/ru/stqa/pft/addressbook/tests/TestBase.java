@@ -1,5 +1,4 @@
 package ru.stqa.pft.addressbook.tests;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
@@ -14,7 +13,7 @@ public class TestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
-        app = new ApplicationManager(wd, BrowserType.CHROME);
+        app = new ApplicationManager(wd, BrowserType.IE);
         app.init();
     }
 
