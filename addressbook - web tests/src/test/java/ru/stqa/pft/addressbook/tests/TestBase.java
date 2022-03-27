@@ -13,7 +13,7 @@ public class TestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
-        app = new ApplicationManager(wd, BrowserType.IE);
+        app = new ApplicationManager(wd, BrowserType.FIREFOX);
         app.init();
     }
 

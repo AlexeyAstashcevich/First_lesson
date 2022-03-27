@@ -17,10 +17,14 @@ public class HelperBase {
 
     protected void type(String text, By locator) {
         click(locator);
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+        if (text != null) {
+            String existingText = wd.findElement(locator).getAttribute("value");
+            if (!existingText.equals(text)) {
+                wd.findElement(locator).clear();
+                wd.findElement(locator).sendKeys(text);
+            }
+        }
     }
-
     protected void insertPhoto(String dyrectory) {
         wd.findElement(By.name("photo")).sendKeys(dyrectory);
     }
