@@ -46,6 +46,10 @@ public class ContactModificationTest extends TestBase {
             .month("August")
             .year("1989")
             .builder());
+    app.getGroupHelper().chooseGroup(new ContactDataBuilder()
+            .group(null)
+            .creation(false)
+            .builder());
     app.getContactHelper().fillSecondaryAddress(new ContactDataBuilder()
             .secondaryAdress("Usa, Briton beach")
             .builder());

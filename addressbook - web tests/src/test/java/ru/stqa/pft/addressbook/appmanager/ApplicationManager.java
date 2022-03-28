@@ -14,7 +14,6 @@ public class ApplicationManager extends HelperBase {
     private NavigationHelper navigationHelperHomework;
     private ContactHelper contactHelperHomework;
     private GroupHelper groupHelper;
-    private GroupNavigation groupNavigation;
     private SessionHelper sessionHelper;
 
     public ApplicationManager(WebDriver wd, String browser) {
@@ -31,12 +30,11 @@ public class ApplicationManager extends HelperBase {
         }else if  (browser.equals(BrowserType.IE)){
             wd = new InternetExplorerDriver();
         }
-        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/index.php");
         contactHelperHomework = new ContactHelper(wd);
         navigationHelperHomework = new NavigationHelper(wd);
         groupHelper = new GroupHelper(wd);
-        groupNavigation = new GroupNavigation(wd);
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login("admin", "secret");
     }
@@ -72,9 +70,6 @@ public class ApplicationManager extends HelperBase {
         return groupHelper;
     }
 
-    public GroupNavigation getGroupNavigation() {
-        return groupNavigation;
-    }
 
 
 }

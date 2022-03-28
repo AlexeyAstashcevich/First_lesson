@@ -15,6 +15,9 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void goToHomepage() {
+        if (isElemrntPresent(By.id("maintable"))) {
+            return;
+        }
         click(By.linkText("home page"));
     }
     public void fillHomepage(ContactData homepageData) {
@@ -47,5 +50,14 @@ public class NavigationHelper extends HelperBase {
 
     public void updateInformation() {
         click(By.name("update"));
+    }
+
+    public void goToGroupPage() {
+        if (! isElemrntPresent(By.tagName("h1"))
+                && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+                && isElemrntPresent(By.name("new"))) {
+            return;
+        }
+        click(By.linkText("groups"));
     }
 }

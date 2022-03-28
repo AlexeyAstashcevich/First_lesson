@@ -4,6 +4,11 @@ public class ContactDataBuilder {
 
     private final ContactData contactData = new ContactData();
 
+    public ContactDataBuilder creation(Boolean creation) {
+        contactData.setCreation(creation);
+        return this;
+    }
+
     public ContactDataBuilder title(String title) {
         contactData.setTitle(title);
         return this;

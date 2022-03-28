@@ -24,7 +24,15 @@ public class ContactData {
     private String year;
     private String group;
     private String homepage;
+    private boolean creation;
 
+    public void setCreation(boolean creation) {
+        this.creation = creation;
+    }
+
+    public boolean isCreation() {
+        return creation;
+    }
     public String getHomepage() {
         return homepage;
     }

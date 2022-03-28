@@ -49,6 +49,7 @@ public class NewContactCreationTest extends TestBase {
             .builder());
     app.getGroupHelper().chooseGroup(new ContactDataBuilder()
             .group("Test1")
+            .creation(true)
             .builder());
     app.getContactHelper().fillSecondaryAddress(new ContactDataBuilder()
             .secondaryAdress("Usa, Briton beach")
