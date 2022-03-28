@@ -5,8 +5,13 @@ import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 
 
 public class ContactModificationTest extends TestBase {
+  NewContactCreationTest contactCreationTest= new NewContactCreationTest();
+
   @Test
   public void contactModification(){
+    if (! app.getNavigationHelper().isThereAContact()){
+      contactCreationTest.testNewContactCreation();
+    }
     app.getNavigationHelper().initContactModification();
     app.getContactHelper().fillNamesForms(new ContactDataBuilder()
             .firstname("Alex")
@@ -47,7 +52,7 @@ public class ContactModificationTest extends TestBase {
             .year("1989")
             .builder());
     app.getGroupHelper().chooseGroup(new ContactDataBuilder()
-            .group(null)
+            .group("Test 1")
             .creation(false)
             .builder());
     app.getContactHelper().fillSecondaryAddress(new ContactDataBuilder()

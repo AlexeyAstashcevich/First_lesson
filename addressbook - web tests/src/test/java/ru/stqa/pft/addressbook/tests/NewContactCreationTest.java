@@ -48,7 +48,7 @@ public class NewContactCreationTest extends TestBase {
             .year("1989")
             .builder());
     app.getGroupHelper().chooseGroup(new ContactDataBuilder()
-            .group("Test1")
+            .group("Test 1")
             .creation(true)
             .builder());
     app.getContactHelper().fillSecondaryAddress(new ContactDataBuilder()
