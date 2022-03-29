@@ -5,8 +5,14 @@ import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 
 
 public class ContactModificationTest extends TestBase {
+
+
   @Test
   public void contactModification(){
+    if(! app.getNavigationHelper().isThereAContact()) {
+    app.getNavigationHelper().creationContact();;
+    }
+
     app.getNavigationHelper().initContactModification();
     app.getContactHelper().fillNamesForms(new ContactDataBuilder()
             .firstname("Alex")
