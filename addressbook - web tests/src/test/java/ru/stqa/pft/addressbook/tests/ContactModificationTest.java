@@ -5,12 +5,12 @@ import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 
 
 public class ContactModificationTest extends TestBase {
-  NewContactCreationTest contactCreationTest= new NewContactCreationTest();
+  NewContactCreationTest contactCreationTest = new NewContactCreationTest();
 
   @Test
   public void contactModification(){
     if (! app.getNavigationHelper().isThereAContact()){
-      contactCreationTest.testNewContactCreation();
+      contactCreationTest.NewContactCreation(app);
     }
     app.getNavigationHelper().initContactModification();
     app.getContactHelper().fillNamesForms(new ContactDataBuilder()
@@ -51,10 +51,11 @@ public class ContactModificationTest extends TestBase {
             .month("August")
             .year("1989")
             .builder());
+    if(app.getGroupHelper().checkGroups()){
     app.getGroupHelper().chooseGroup(new ContactDataBuilder()
             .group("Test 1")
             .creation(false)
-            .builder());
+            .builder());}
     app.getContactHelper().fillSecondaryAddress(new ContactDataBuilder()
             .secondaryAdress("Usa, Briton beach")
             .builder());

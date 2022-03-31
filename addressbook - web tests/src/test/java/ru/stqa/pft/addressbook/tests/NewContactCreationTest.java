@@ -1,13 +1,17 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 
 public class NewContactCreationTest extends TestBase {
 
   @Test
+  public void testNewContactCreation(){
+    NewContactCreation(app);
+  }
 
-  public void testNewContactCreation() {
+  public void NewContactCreation(ApplicationManager app) {
     app.getNavigationHelper().addNewContact();
     app.getContactHelper().fillNamesForms(new ContactDataBuilder()
             .firstname("Alex")
@@ -16,7 +20,7 @@ public class NewContactCreationTest extends TestBase {
             .nickname("Boldi")
             .builder());
     app.getNavigationHelper().addPhoto(new ContactDataBuilder()
-         .photoDirectory("C:\\Bolduin.jpg")
+         .photoDirectory("addressbook - web tests/resources/Bolduin.jpg")
          .builder());
     app.getContactHelper().fillCompanyForms(new ContactDataBuilder()
             .title("Boldo-Voldo")
@@ -47,10 +51,11 @@ public class NewContactCreationTest extends TestBase {
             .month("August")
             .year("1989")
             .builder());
+    if(app.getGroupHelper().checkGroups()){
     app.getGroupHelper().chooseGroup(new ContactDataBuilder()
             .group("Test 1")
             .creation(true)
-            .builder());
+            .builder());}
     app.getContactHelper().fillSecondaryAddress(new ContactDataBuilder()
             .secondaryAdress("Usa, Briton beach")
             .builder());
