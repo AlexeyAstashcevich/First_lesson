@@ -5,6 +5,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
+
 public class HelperBase {
     WebDriver wd;
 
@@ -27,7 +29,7 @@ public class HelperBase {
         }
     }
     protected void insertPhoto(String dyrectory) {
-        wd.findElement(By.name("photo")).sendKeys(dyrectory);
+        wd.findElement(By.name("photo")).sendKeys(new File(dyrectory).getAbsolutePath());
     }
 
     public void login(String username, String password) {
