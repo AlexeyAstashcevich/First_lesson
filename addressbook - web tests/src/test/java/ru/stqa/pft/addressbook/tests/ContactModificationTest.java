@@ -20,7 +20,7 @@ public class ContactModificationTest extends TestBase {
             .nickname("Boldi")
             .builder());
     app.getNavigationHelper().addPhoto(new ContactDataBuilder()
-            .photoDirectory("C:\\Bolduin.jpg")
+            .photoDirectory("resources/Bolduin.jpg")
             .builder());
     app.getContactHelper().fillCompanyForms(new ContactDataBuilder()
             .title("Boldo-Voldo")

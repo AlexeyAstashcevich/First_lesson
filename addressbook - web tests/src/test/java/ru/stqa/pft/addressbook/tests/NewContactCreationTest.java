@@ -1,24 +1,30 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
+import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.ContactDataBuilder;
+
+import java.util.HashSet;
+import java.util.List;
 
 public class NewContactCreationTest extends TestBase {
 
   @Test
   public void testNewContactCreation(){
-    NewContactCreation(app);
+    contactCreation(app);
   }
 
-  public void NewContactCreation(ApplicationManager app) {
+  public void contactCreation(ApplicationManager app) {
+    List<ContactData> before = app.getContactHelper().getContactList();
     app.getNavigationHelper().addNewContact();
-    app.getContactHelper().fillNamesForms(new ContactDataBuilder()
-            .firstname("Alex")
+    ContactData contact = new ContactDataBuilder().firstname("Alex")
             .middleName("Bolduin")
             .lastname("Bolduin")
             .nickname("Boldi")
-            .builder());
+            .builder();
+    app.getContactHelper().fillNamesForms(contact);
     app.getNavigationHelper().addPhoto(new ContactDataBuilder()
          .photoDirectory("resources/Bolduin.jpg")
          .builder());
@@ -67,6 +73,11 @@ public class NewContactCreationTest extends TestBase {
             .builder());
     app.getNavigationHelper().submitNewContact();
     app.getNavigationHelper().goToHomepage();
+    List<ContactData> after = app.getContactHelper().getContactList();
+    int max = after.stream().max((o1, o2) -> Integer.compare(o1.getNameId(),o2.getNameId())).get().getNameId();
+    after.get(after.size()-1).setNameId(max);
+    before.add(contact);
+    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
 
   }
 

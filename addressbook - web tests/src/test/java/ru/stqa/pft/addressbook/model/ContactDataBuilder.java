@@ -4,6 +4,8 @@ public class ContactDataBuilder {
 
     private final ContactData contactData = new ContactData();
 
+
+
     public ContactDataBuilder creation(Boolean creation) {
         contactData.setCreation(creation);
         return this;
@@ -126,7 +128,10 @@ public class ContactDataBuilder {
         return this;
     }
 
-
+    public ContactDataBuilder setNameId(Integer setNameId) {
+        contactData.setNameId(setNameId);
+        return this;
+    }
     public ContactData builder() {
         return contactData;
     }
