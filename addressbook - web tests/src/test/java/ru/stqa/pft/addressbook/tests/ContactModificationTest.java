@@ -17,53 +17,53 @@ public class ContactModificationTest extends TestBase {
             .middleName("Bolduin")
             .lastname("Bolduin")
             .nickname("Boldi")
-            .builder());
+            .build());
     app.getNavigationHelper().addPhoto(new ContactDataBuilder()
             .photoDirectory("resources/Bolduin.jpg")
-            .builder());
+            .build());
     app.getContactHelper().fillCompanyForms(new ContactDataBuilder()
             .title("Boldo-Voldo")
             .company("Fox")
             .companyAddress("Usa, bryton beach 48")
-            .builder());
+            .build());
     app.getContactHelper().fillPhonesForms(new ContactDataBuilder()
             .homePhone("+78954523")
             .fax("None")
             .mobilePhone("+735645645")
             .workPhone("+2344234432")
-            .builder());
+            .build());
     app.getContactHelper().fillEmailsForms(new ContactDataBuilder()
             .email1("boldi@jojo.com")
             .email2("holo@gmail.com")
             .email3("gop@jojo.com")
-            .builder());
+            .build());
     app.getNavigationHelper().fillHomepage(new ContactDataBuilder()
             .homepage("yandex.ru")
-            .builder());
+            .build());
     app.getContactHelper().fillBirthday(new ContactDataBuilder()
             .day("15")
             .month("August")
             .year("1989")
-            .builder());
+            .build());
     app.getContactHelper().fillAnyversary(new ContactDataBuilder()
             .day("17")
             .month("August")
             .year("1989")
-            .builder());
+            .build());
     if(app.getGroupHelper().checkGroups()){
     app.getGroupHelper().chooseGroup(new ContactDataBuilder()
             .group("Test 1")
             .creation(false)
-            .builder());}
+            .build());}
     app.getContactHelper().fillSecondaryAddress(new ContactDataBuilder()
             .secondaryAdress("Usa, Briton beach")
-            .builder());
+            .build());
     app.getContactHelper().fillSecondaryPhone(new ContactDataBuilder()
             .secondaryPhone("48")
-            .builder());
+            .build());
     app.getContactHelper().fillNotes(new ContactDataBuilder()
             .notes("Best friend")
-            .builder());
+            .build());
     app.getNavigationHelper().updateInformation();
     app.getNavigationHelper().goToHomepage();
   }

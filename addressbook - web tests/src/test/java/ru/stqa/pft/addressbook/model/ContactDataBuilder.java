@@ -128,11 +128,11 @@ public class ContactDataBuilder {
         return this;
     }
 
-    public ContactDataBuilder setNameId(Integer setNameId) {
+    public ContactDataBuilder nameId(Integer setNameId) {
         contactData.setNameId(setNameId);
         return this;
     }
-    public ContactData builder() {
+    public ContactData build() {
         return contactData;
     }
 }

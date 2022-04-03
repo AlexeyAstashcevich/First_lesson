@@ -79,12 +79,14 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("td.center"));
-    for (WebElement element : elements) {
-      String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactDataBuilder().setNameId(id).firstname(name).lastname(name).builder();
-      contacts.add(contact);
+    List<WebElement> elements = wd.findElements(By.tagName("tr"));
+    for (int i = 1; i < elements.size(); i++) {
+      List<WebElement> colVals = elements.get(i).findElements(By.tagName("td"));
+      contacts.add(new ContactDataBuilder()
+              .nameId(Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value")))
+              .firstname(colVals.get(2).getText())
+              .lastname(colVals.get(1).getText())
+              .build());
     }
     return contacts;
   }
@@ -95,54 +97,54 @@ public class ContactHelper extends HelperBase {
             .middleName("Bolduin")
             .lastname("Bolduin")
             .nickname("Boldi")
-            .builder());
+            .build());
     navigationHelper.addPhoto(new ContactDataBuilder()
             .photoDirectory("resources/Bolduin.jpg")
-            .builder());
+            .build());
     fillCompanyForms(new ContactDataBuilder()
             .title("Boldo-Voldo")
             .company("Fox")
             .companyAddress("Usa, bryton beach 48")
-            .builder());
+            .build());
     fillPhonesForms(new ContactDataBuilder()
             .homePhone("+78954523")
             .fax("None")
             .mobilePhone("+735645645")
             .workPhone("+2344234432")
-            .builder());
+            .build());
     fillEmailsForms(new ContactDataBuilder()
             .email1("boldi@jojo.com")
             .email2("holo@gmail.com")
             .email3("gop@jojo.com")
-            .builder());
+            .build());
     navigationHelper.fillHomepage(new ContactDataBuilder()
             .homepage("yandex.ru")
-            .builder());
+            .build());
     fillBirthday(new ContactDataBuilder()
             .day("15")
             .month("August")
             .year("1989")
-            .builder());
+            .build());
     fillAnyversary(new ContactDataBuilder()
             .day("17")
             .month("August")
             .year("1989")
-            .builder());
+            .build());
     if (groupHelper.checkGroups()) {
       groupHelper.chooseGroup(new ContactDataBuilder()
               .group("Test 1")
               .creation(true)
-              .builder());
+              .build());
     }
     fillSecondaryAddress(new ContactDataBuilder()
             .secondaryAdress("Usa, Briton beach")
-            .builder());
+            .build());
     fillSecondaryPhone(new ContactDataBuilder()
             .secondaryPhone("48")
-            .builder());
+            .build());
     fillNotes(new ContactDataBuilder()
             .notes("Best friend")
-            .builder());
+            .build());
     navigationHelper.submitNewContact();
     navigationHelper.goToHomepage();
   }
