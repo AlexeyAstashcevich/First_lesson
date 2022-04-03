@@ -83,7 +83,6 @@ public class ContactHelper extends HelperBase {
     for (int i = 1; i < elements.size(); i++) {
       List<WebElement> colVals = elements.get(i).findElements(By.tagName("td"));
       contacts.add(new ContactDataBuilder()
-              .nameId(Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value")))
               .firstname(colVals.get(2).getText())
               .lastname(colVals.get(1).getText())
               .build());

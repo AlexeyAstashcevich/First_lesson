@@ -7,13 +7,12 @@ import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 
 public class TestBase {
 
-    protected ApplicationManager app;
+    protected ApplicationManager app= new ApplicationManager(null, BrowserType.FIREFOX);
 
     WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
-        app = new ApplicationManager(wd, BrowserType.FIREFOX);
         app.init();
     }
 

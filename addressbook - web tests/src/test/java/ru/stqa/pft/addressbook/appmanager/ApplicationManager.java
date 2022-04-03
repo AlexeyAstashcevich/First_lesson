@@ -30,7 +30,7 @@ public class ApplicationManager extends HelperBase {
         }else if  (browser.equals(BrowserType.IE)){
             wd = new InternetExplorerDriver();
         }
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/index.php");
         contactHelperHomework = new ContactHelper(wd);
         navigationHelperHomework = new NavigationHelper(wd);

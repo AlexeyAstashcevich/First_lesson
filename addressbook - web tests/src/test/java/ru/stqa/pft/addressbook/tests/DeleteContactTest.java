@@ -17,9 +17,9 @@ public class DeleteContactTest extends TestBase {
     app.getNavigationHelper().chooseContact();
     app. getNavigationHelper().deleteContact();
     app.getNavigationHelper().submitDeleteContact();
+    app.getNavigationHelper().goToHomepage();
     List<ContactData> after = app.getContactHelper().getContactList();
-    before.remove(before.size()-1);
-    Comparator<? super ContactData> byId= Comparator.comparing(ContactData::getNameId);
+    Comparator<? super ContactData> byId= Comparator.comparing(ContactData::getFirstname);
     after.sort(byId);
     before.sort(byId);
     Assert.assertEquals(after,before);
