@@ -1,7 +1,11 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.ContactDataBuilder;
+import java.util.Comparator;
+import java.util.List;
 
 
 public class ContactModificationTest extends TestBase {
@@ -11,11 +15,12 @@ public class ContactModificationTest extends TestBase {
     if (! app.getNavigationHelper().isThereAContact()){
       app.getContactHelper().getCreationContact();
     }
+    List<ContactData> before = app.getContactHelper().getContactList();
     app.getNavigationHelper().initContactModification();
     app.getContactHelper().fillNamesForms(new ContactDataBuilder()
-            .firstname("Alex")
+            .firstname("Jojo")
             .middleName("Bolduin")
-            .lastname("Bolduin")
+            .lastname("Ferhel")
             .nickname("Boldi")
             .build());
     app.getNavigationHelper().addPhoto(new ContactDataBuilder()
@@ -66,5 +71,16 @@ public class ContactModificationTest extends TestBase {
             .build());
     app.getNavigationHelper().updateInformation();
     app.getNavigationHelper().goToHomepage();
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(before,after);
+    after.remove(after.size()-1);
+    after.add(new ContactDataBuilder()
+            .firstname("Alex")
+            .lastname("Bolduin")
+            .build());
+    Comparator<? super ContactData> byId= (Comparator.comparingInt(ContactData::getNameId));
+    after.sort(byId);
+    before.sort(byId);
+    Assert.assertEquals(after,before);
   }
 }
