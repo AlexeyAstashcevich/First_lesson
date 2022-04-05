@@ -6,12 +6,8 @@ public class GroupData {
   private final String name;
   private final String header;
   private final String footer;
-  private  int id;
+  private int id;
 
-
-  public void setId(int id) {
-    this.id = id;
-  }
 
   public GroupData(int id, String name, String header, String footer) {
     this.id = id;
@@ -41,6 +37,10 @@ public class GroupData {
 
   public int getId() {
     return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   @Override

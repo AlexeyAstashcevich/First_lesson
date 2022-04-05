@@ -6,66 +6,73 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 public class NavigationHelper extends HelperBase {
 
-    public NavigationHelper(WebDriver wd) {
+  public NavigationHelper(WebDriver wd) {
 
-       super(wd);
-    }
-    public void submitNewContact(){
-        click(By.xpath("//div[@id='content']/form/input[21]"));
-    }
+    super(wd);
+  }
 
-    public void goToHomepage() {
-        if (isElemrntPresent(By.id("maintable"))) {
-            return;
-        }
-        click(By.linkText("home page"));
-    }
-    public void fillHomepage(ContactData homepageData) {
-        type(homepageData.getHomepage(), By.name("homepage"));
-    }
+  public void submitNewContact() {
+    click(By.xpath("//div[@id='content']/form/input[21]"));
+  }
 
-    public void addNewContact() {
-        click(By.linkText("add new"));
+  public void goToHomepage() {
+    if (isElemrntPresent(By.id("maintable"))) {
+      try {
+        Thread.sleep(2000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      return;
     }
+    click(By.linkText("home"));
+  }
 
-    public void addPhoto(ContactData photoData) {
-        insertPhoto(photoData.getPhotoDirectory());
-    }
+  public void fillHomepage(ContactData homepageData) {
+    type(homepageData.getHomepage(), By.name("homepage"));
+  }
 
-    public void chooseContact() {
-        click(By.name("selected[]"));
-    }
+  public void addNewContact() {
+    click(By.linkText("add new"));
+  }
 
-    public void deleteContact() {
-        click(By.xpath("/html/body/div/div[4]/form[2]/div[2]/input"));
-    }
+  public void addPhoto(ContactData photoData) {
+    insertPhoto(photoData.getPhotoDirectory());
+  }
 
-    public void submitDeleteContact() {
-        wd.switchTo().alert().accept();
-    }
+  public void chooseContact() {
+    click(By.name("selected[]"));
+  }
 
-    public void initContactModification() {
-        click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
-    }
+  public void deleteContact() {
+    click(By.xpath("/html/body/div/div[4]/form[2]/div[2]/input"));
+  }
 
-    public void updateInformation() {
-        click(By.name("update"));
-    }
+  public void submitDeleteContact() {
+    wd.switchTo().alert().accept();
+  }
 
-    public void goToGroupPage() {
-        if (! isElemrntPresent(By.tagName("h1"))
-                && wd.findElement(By.tagName("h1")).getText().equals("Groups")
-                && isElemrntPresent(By.name("new"))) {
-            return;
-        }
-        click(By.linkText("groups"));
-    }
+  public void initContactModification() {
+    click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+  }
 
-    public void goHome(){
-        click(By.xpath("/html/body/div/div[4]/div/i/a[2]"));
-    }
+  public void updateInformation() {
+    click(By.name("update"));
+  }
 
-    public boolean isThereAContact() {
-        return isElemrntPresent(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+  public void goToGroupPage() {
+    if (!isElemrntPresent(By.tagName("h1"))
+            && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+            && isElemrntPresent(By.name("new"))) {
+      return;
     }
+    click(By.linkText("groups"));
+  }
+
+  public void goHome() {
+    click(By.xpath("/html/body/div/div[4]/div/i/a[2]"));
+  }
+
+  public boolean isThereAContact() {
+    return isElemrntPresent(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+  }
 }

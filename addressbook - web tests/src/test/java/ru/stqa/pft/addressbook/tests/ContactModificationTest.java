@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ContactModificationTest extends TestBase {
   @Test
   public void contactModification() {
     if (!app.getNavigationHelper().isThereAContact()) {
-      app.getContactHelper().getCreationContact();
+      app.getContactHelper().contactCreation(contactInfo);
     }
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getNavigationHelper().initContactModification();
@@ -46,16 +47,9 @@ public class ContactModificationTest extends TestBase {
     app.getNavigationHelper().fillHomepage(new ContactDataBuilder()
             .homepage("yandex.ru")
             .build());
-    app.getContactHelper().fillBirthday(new ContactDataBuilder()
-            .day("15")
-            .month("August")
-            .year("1989")
-            .build());
-    app.getContactHelper().fillAnyversary(new ContactDataBuilder()
-            .day("17")
-            .month("August")
-            .year("1989")
-            .build());
+    app.getContactHelper().fillBirthday(LocalDate.of(1111, 5, 3));
+
+    app.getContactHelper().fillAnyversary(LocalDate.of(1881, 6, 9));
     if (app.getGroupHelper().checkGroups()) {
       app.getGroupHelper().chooseGroup(new ContactDataBuilder()
               .group("Test 1")

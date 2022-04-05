@@ -1,26 +1,57 @@
 package ru.stqa.pft.addressbook.tests;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.ContactDataBuilder;
+
+import java.time.LocalDate;
 
 public class TestBase {
 
-    protected ApplicationManager app= new ApplicationManager(null, BrowserType.FIREFOX);
+  protected static final ApplicationManager app = new ApplicationManager(null, BrowserType.FIREFOX);
+  protected ContactData contactInfo;
+  WebDriver wd;
 
-    WebDriver wd;
+  @BeforeSuite(alwaysRun = true)
+  public void setUp() {
+    app.init();
+    contactInfo = new ContactDataBuilder()
+            .firstname("Alex")
+            .middleName("Bolduin")
+            .lastname("Bolduin")
+            .nickname("Boldi")
+            .photoDirectory("resources/Bolduin.jpg")
+            .title("Boldo-Voldo")
+            .company("Fox")
+            .companyAddress("Usa, bryton beach 48")
+            .homePhone("+78954523")
+            .fax("None")
+            .mobilePhone("+735645645")
+            .workPhone("+2344234432")
+            .email1("boldi@jojo.com")
+            .email2("holo@gmail.com")
+            .email3("gop@jojo.com")
+            .homepage("yandex.ru")
+            .birthday(LocalDate.of(1991, 5, 13))
+            .anniversary(LocalDate.of(1889, 6, 12))
+            .group("Test 1")
+            .creation(true)
+            .secondaryAdress("Usa, Briton beach")
+            .secondaryPhone("48")
+            .notes("Best friend")
+            .build();
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() {
-        app.init();
-    }
 
+  }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown(){
-        app.stop();
-    }
+  @AfterSuite(alwaysRun = true)
+  public void tearDown() {
+    app.stop();
+  }
 
 
 }

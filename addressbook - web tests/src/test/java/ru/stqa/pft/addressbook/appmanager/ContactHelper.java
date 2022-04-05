@@ -6,8 +6,11 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ContactHelper extends HelperBase {
 
@@ -29,24 +32,20 @@ public class ContactHelper extends HelperBase {
     type(contactData.getCompanyAddress(), By.name("address"));
   }
 
-  public void fillAnyversary(ContactData datesData) {
+  public void fillAnyversary(LocalDate anniversary) {
     click(By.name("aday"));
-    select(By.name("aday"), datesData.getDay());
-    click(By.xpath("//div[@id='content']/form/select[3]/option[19]"));
+    select(By.name("aday"), String.valueOf(anniversary.getDayOfMonth()));
     click(By.name("amonth"));
-    select(By.name("amonth"), datesData.getMonth());
-    click(By.xpath("//div[@id='content']/form/select[4]/option[12]"));
-    type(datesData.getYear(), By.name("ayear"));
+    select(By.name("amonth"), anniversary.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+    type(String.valueOf(anniversary.getYear()), By.name("ayear"));
   }
 
-  public void fillBirthday(ContactData birthdayData) {
+  public void fillBirthday(LocalDate birthday) {
     click(By.name("bday"));
-    select(By.name("bday"), birthdayData.getDay());
-    click(By.xpath("//option[@value='15']"));
+    select(By.name("bday"), String.valueOf(birthday.getDayOfMonth()));
     click(By.name("bmonth"));
-    select(By.name("bmonth"), birthdayData.getMonth());
-    click(By.xpath("//option[@value='August']"));
-    type(birthdayData.getYear(), By.name("byear"));
+    select(By.name("bmonth"), birthday.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+    type(String.valueOf(birthday.getYear()), By.name("byear"));
   }
 
   public void fillEmailsForms(ContactData emailsData) {
@@ -81,8 +80,10 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.tagName("tr"));
     for (int i = 1; i < elements.size(); i++) {
+      int id = Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value"));
       List<WebElement> colVals = elements.get(i).findElements(By.tagName("td"));
       contacts.add(new ContactDataBuilder()
+              .nameId(id)
               .firstname(colVals.get(2).getText())
               .lastname(colVals.get(1).getText())
               .build());
@@ -90,60 +91,25 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
-  public void getCreationContact() {
+  public void contactCreation(ContactData contactData) {
     navigationHelper.addNewContact();
-    fillNamesForms(new ContactDataBuilder().firstname("Alex")
-            .middleName("Bolduin")
-            .lastname("Bolduin")
-            .nickname("Boldi")
-            .build());
-    navigationHelper.addPhoto(new ContactDataBuilder()
-            .photoDirectory("resources/Bolduin.jpg")
-            .build());
-    fillCompanyForms(new ContactDataBuilder()
-            .title("Boldo-Voldo")
-            .company("Fox")
-            .companyAddress("Usa, bryton beach 48")
-            .build());
-    fillPhonesForms(new ContactDataBuilder()
-            .homePhone("+78954523")
-            .fax("None")
-            .mobilePhone("+735645645")
-            .workPhone("+2344234432")
-            .build());
-    fillEmailsForms(new ContactDataBuilder()
-            .email1("boldi@jojo.com")
-            .email2("holo@gmail.com")
-            .email3("gop@jojo.com")
-            .build());
-    navigationHelper.fillHomepage(new ContactDataBuilder()
-            .homepage("yandex.ru")
-            .build());
-    fillBirthday(new ContactDataBuilder()
-            .day("15")
-            .month("August")
-            .year("1989")
-            .build());
-    fillAnyversary(new ContactDataBuilder()
-            .day("17")
-            .month("August")
-            .year("1989")
-            .build());
+    fillNamesForms(contactData);
+    navigationHelper.addPhoto(contactData);
+    fillCompanyForms(contactData);
+    fillPhonesForms(contactData);
+    fillEmailsForms(contactData);
+    navigationHelper.fillHomepage(contactData);
+    fillBirthday(contactData.getBirthday());
+    fillAnyversary(contactData.getAnniversary());
     if (groupHelper.checkGroups()) {
-      groupHelper.chooseGroup(new ContactDataBuilder()
-              .group("Test 1")
-              .creation(true)
-              .build());
+      String i = wd.findElement(By.name("new_group")).getText();
+      if (i.contains("Test 1")) {
+        groupHelper.chooseGroup(contactData);
+      }
     }
-    fillSecondaryAddress(new ContactDataBuilder()
-            .secondaryAdress("Usa, Briton beach")
-            .build());
-    fillSecondaryPhone(new ContactDataBuilder()
-            .secondaryPhone("48")
-            .build());
-    fillNotes(new ContactDataBuilder()
-            .notes("Best friend")
-            .build());
+    fillSecondaryAddress(contactData);
+    fillSecondaryPhone(contactData);
+    fillNotes(contactData);
     navigationHelper.submitNewContact();
     navigationHelper.goToHomepage();
   }
