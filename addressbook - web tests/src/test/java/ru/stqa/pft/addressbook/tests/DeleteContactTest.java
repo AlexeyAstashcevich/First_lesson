@@ -9,16 +9,18 @@ import java.util.List;
 
 
 public class DeleteContactTest extends TestBase {
+
+
   @Test
   public void deleteContact() {
-    if (!app.getNavigationHelper().isThereAContact()) {
+    if (!app.goTo().isThereAContact()) {
       app.getContactHelper().contactCreation(contactInfo);
     }
     List<ContactData> before = app.getContactHelper().getContactList();
-    app.getNavigationHelper().chooseContact();
-    app.getNavigationHelper().deleteContact();
-    app.getNavigationHelper().submitDeleteContact();
-    app.getNavigationHelper().goToHomepage();
+    app.goTo().chooseContact();
+    app.goTo().deleteContact();
+    app.goTo().submitDeleteContact();
+    app.goTo().goToHomepage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Comparator<? super ContactData> byId = Comparator.comparing(ContactData::getNameId);
     after.sort(byId);

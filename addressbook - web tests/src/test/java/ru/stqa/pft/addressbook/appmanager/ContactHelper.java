@@ -113,8 +113,31 @@ public class ContactHelper extends HelperBase {
     navigationHelper.submitNewContact();
     navigationHelper.goToHomepage();
   }
-}
 
+  public void contactModification(ContactData modificatedInfo) {
+    navigationHelper.initContactModification();
+    fillNamesForms(modificatedInfo);
+    navigationHelper.addPhoto(modificatedInfo);
+    fillCompanyForms(modificatedInfo);
+    fillPhonesForms(modificatedInfo);
+    fillEmailsForms(modificatedInfo);
+    navigationHelper.fillHomepage(modificatedInfo);
+    fillBirthday(modificatedInfo.getBirthday());
+    fillAnyversary(modificatedInfo.getAnniversary());
+    if (groupHelper.checkGroups()) {
+      String i = wd.findElement(By.name("new_group")).getText();
+      if (i.contains("Test 1")) {
+        groupHelper.chooseGroup(modificatedInfo);
+      }
+    }
+    fillSecondaryAddress(modificatedInfo);
+    fillSecondaryPhone(modificatedInfo);
+
+    fillNotes(modificatedInfo);
+    navigationHelper.submitNewContact();
+    navigationHelper.goToHomepage();
+  }
+}
 
 
 

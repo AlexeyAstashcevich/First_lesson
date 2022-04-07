@@ -59,7 +59,7 @@ public class NavigationHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void goToGroupPage() {
+  public void group() {
     if (!isElemrntPresent(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Groups")
             && isElemrntPresent(By.name("new"))) {

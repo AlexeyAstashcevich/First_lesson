@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager extends HelperBase {
   private final String browser;
-  private NavigationHelper navigationHelperHomework;
+  private NavigationHelper navigationHelper;
   private ContactHelper contactHelperHomework;
   private GroupHelper groupHelper;
   private SessionHelper sessionHelper;
@@ -35,7 +35,7 @@ public class ApplicationManager extends HelperBase {
     wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/index.php");
     contactHelperHomework = new ContactHelper(wd);
-    navigationHelperHomework = new NavigationHelper(wd);
+    navigationHelper = new NavigationHelper(wd);
     groupHelper = new GroupHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
@@ -60,15 +60,15 @@ public class ApplicationManager extends HelperBase {
   }
 
 
-  public NavigationHelper getNavigationHelper() {
-    return navigationHelperHomework;
+  public NavigationHelper goTo() {
+    return navigationHelper;
   }
 
   public ContactHelper getContactHelper() {
     return contactHelperHomework;
   }
 
-  public GroupHelper getGroupHelper() {
+  public GroupHelper group() {
     return groupHelper;
   }
 
