@@ -115,7 +115,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void contactModification(ContactData modificatedInfo) {
-    navigationHelper.initContactModification();
+    navigationHelper.initContactModification(modificatedInfo.getNameId());
     fillNamesForms(modificatedInfo);
     navigationHelper.addPhoto(modificatedInfo);
     fillCompanyForms(modificatedInfo);
@@ -132,9 +132,8 @@ public class ContactHelper extends HelperBase {
     }
     fillSecondaryAddress(modificatedInfo);
     fillSecondaryPhone(modificatedInfo);
-
     fillNotes(modificatedInfo);
-    navigationHelper.submitNewContact();
+    navigationHelper.updateInformation();
     navigationHelper.goToHomepage();
   }
 }

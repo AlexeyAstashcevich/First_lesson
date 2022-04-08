@@ -17,11 +17,13 @@ public class ContactModificationTest extends TestBase {
       app.getContactHelper().contactCreation(contactInfo);
     }
     List<ContactData> before = app.getContactHelper().getContactList();
+    ContactData beforeUpdate = before.get(before.size()-1);
+    int id = beforeUpdate.getNameId();
+    modificatedInfo.setNameId(id);
     app.getContactHelper().contactModification(modificatedInfo);
     List<ContactData> after = app.getContactHelper().getContactList();
-    Comparator<? super ContactData> byId = (Comparator.comparing(ContactData::getFirstname));
-    after.sort(byId);
-    before.sort(byId);
-    Assert.assertEquals(before, after);
+    ContactData updated = after.stream().filter(x->x.getNameId()==id).findAny().get();
+    Assert.assertEquals(after.size(),before.size());
+    Assert.assertEquals(updated, modificatedInfo );
   }
 }

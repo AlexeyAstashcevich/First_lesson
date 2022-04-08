@@ -51,10 +51,11 @@ public class NavigationHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification() {
-    click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
-  }
+  public void initContactModification(int id) {
 
+    click(By.cssSelector("a[href='edit.php?id="+ String.valueOf(id) + "'] > img[src='icons/pencil.png']"));
+   // click(By.id(String.valueOf(id)));
+  }
   public void updateInformation() {
     click(By.name("update"));
   }
