@@ -20,7 +20,7 @@ public class DeleteContactTest extends TestBase {
     app.goTo().chooseContact();
     app.goTo().deleteContact();
     app.goTo().submitDeleteContact();
-    app.goTo().goToHomepage();
+    app.goTo().goHomeHeadear();
     List<ContactData> after = app.getContactHelper().getContactList();
     Comparator<? super ContactData> byId = Comparator.comparing(ContactData::getNameId);
     after.sort(byId);

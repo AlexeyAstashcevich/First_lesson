@@ -27,6 +27,10 @@ public class NavigationHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
+  public void goHomeHeadear(){
+    click(By.cssSelector("html body div#container div#nav ul li a"));
+  }
+
   public void fillHomepage(ContactData homepageData) {
     type(homepageData.getHomepage(), By.name("homepage"));
   }
@@ -53,8 +57,7 @@ public class NavigationHelper extends HelperBase {
 
   public void initContactModification(int id) {
 
-    click(By.cssSelector("a[href='edit.php?id="+ String.valueOf(id) + "'] > img[src='icons/pencil.png']"));
-   // click(By.id(String.valueOf(id)));
+    click(By.cssSelector("a[href='edit.php?id="+ id + "'] > img[src='icons/pencil.png']"));
   }
   public void updateInformation() {
     click(By.name("update"));

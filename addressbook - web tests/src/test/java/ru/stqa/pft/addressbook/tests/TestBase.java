@@ -21,7 +21,7 @@ public class TestBase {
   public void setUp() {
     app.init();
     modificatedInfo = new ContactDataBuilder()
-            .firstname("Jojo ")
+            .firstname("Jojo")
             .middleName("Laini")
             .lastname("Lomper")
             .nickname("Lomovoz")
