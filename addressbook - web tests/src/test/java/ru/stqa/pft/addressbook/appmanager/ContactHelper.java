@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.ContactDataBuilder;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -76,8 +77,8 @@ public class ContactHelper extends HelperBase {
     type(phonesData.getFax(), By.name("fax"));
   }
 
-  public List<ContactData> getContactList() {
-    List<ContactData> contacts = new ArrayList<>();
+  public Contacts getContactList() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.tagName("tr"));
     for (int i = 1; i < elements.size(); i++) {
       int id = Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value"));

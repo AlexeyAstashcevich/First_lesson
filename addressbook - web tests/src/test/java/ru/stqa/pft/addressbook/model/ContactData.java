@@ -25,12 +25,12 @@ public class ContactData {
   private String group;
   private String homepage;
   private boolean creation;
-  private Integer nameId;
+  private int  nameId;
   private LocalDate anniversary;
   private LocalDate birthday;
 
 
-  public Integer getNameId() {
+  public int getNameId() {
     return nameId;
   }
 

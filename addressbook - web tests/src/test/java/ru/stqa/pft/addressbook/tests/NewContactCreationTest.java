@@ -1,26 +1,30 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
 
 public class NewContactCreationTest extends TestBase {
 
 
   @Test
   public void contactCreating() {
-    List<ContactData> before = app.getContactHelper().getContactList();
+    Contacts before = app.getContactHelper().getContactList();
     app.getContactHelper().contactCreation(contactInfo);
-    List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(before.size() + 1, after.size());
-    after.sort(Comparator.comparing(ContactData::getNameId));
-    ContactData created = after.get(after.size() - 1);
+    Contacts after = app.getContactHelper().getContactList();
+    ContactData created = after.stream().sorted(Comparator.comparing(ContactData::getNameId).reversed()).findFirst().get();
     Assert.assertEquals(contactInfo, created);
-    before.add(created);
-    Assert.assertEquals(after, before);
+    assertThat(after, equalTo(before.withAdd(created)));
 
   }
 }
