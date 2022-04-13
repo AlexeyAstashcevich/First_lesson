@@ -9,7 +9,6 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -115,6 +114,13 @@ public class ContactHelper extends HelperBase {
     navigationHelper.goToHomepage();
   }
 
+    public void deleteContact(int id) {
+    navigationHelper.chooseContactById(id);
+    navigationHelper.deleteContact();
+    navigationHelper.submitDeleteContact();
+    navigationHelper.goHomeHeadear();
+  }
+
   public void contactModification(ContactData modificatedInfo) {
     navigationHelper.initContactModification(modificatedInfo.getNameId());
     fillNamesForms(modificatedInfo);
@@ -135,7 +141,7 @@ public class ContactHelper extends HelperBase {
     fillSecondaryPhone(modificatedInfo);
     fillNotes(modificatedInfo);
     navigationHelper.updateInformation();
-    navigationHelper.goToHomepage();
+    navigationHelper.goHomeHeadear();
   }
 }
 

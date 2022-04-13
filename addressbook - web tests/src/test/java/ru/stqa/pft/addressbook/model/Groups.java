@@ -5,20 +5,20 @@ import com.google.common.collect.ForwardingSet;
 import java.util.HashSet;
 import java.util.Set;
 public class Groups extends ForwardingSet<GroupData> {
-    private Set<GroupData> delegete;
+    private Set<GroupData> delegate;
 
     public Groups(Groups groups){
-        this.delegete = new HashSet<GroupData>(groups.delegete);
+        this.delegate = new HashSet<GroupData>(groups.delegate);
     }
 
     public Groups (){
-        this.delegete = new HashSet<>();
+        this.delegate = new HashSet<>();
     }
 
 
   @Override
   protected Set<GroupData> delegate() {
-    return delegete;
+    return delegate;
   }
 
   public Groups withAdded(GroupData group) {
@@ -32,6 +32,4 @@ public class Groups extends ForwardingSet<GroupData> {
         groups.remove(group);
         return groups;
   }
-
-
 }

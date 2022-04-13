@@ -15,8 +15,9 @@ public class GroupData {
     return id;
   }
 
-  public void setId(int id) {
+  public GroupData withId(int id) {
     this.id = id;
+    return this;
   }
 
   @Override
@@ -44,24 +45,27 @@ public class GroupData {
     return name;
   }
 
-  public void setName(String name) {
+  public GroupData withName(String name) {
     this.name = name;
+    return this;
   }
 
   public String getHeader() {
     return header;
   }
 
-  public void setHeader(String header) {
+  public GroupData withHeader(String header) {
     this.header = header;
+    return this;
   }
 
   public String getFooter() {
     return footer;
   }
 
-  public void setFooter(String footer) {
+  public GroupData withFooter(String footer) {
     this.footer = footer;
+    return this;
   }
 
 }

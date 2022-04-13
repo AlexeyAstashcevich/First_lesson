@@ -43,8 +43,8 @@ public class NavigationHelper extends HelperBase {
     insertPhoto(photoData.getPhotoDirectory());
   }
 
-  public void chooseContact() {
-    click(By.name("selected[]"));
+  public void chooseContactById(int id){
+    click(By.id(String.valueOf(id)));
   }
 
   public void deleteContact() {
@@ -79,4 +79,5 @@ public class NavigationHelper extends HelperBase {
   public boolean isThereAContact() {
     return isElemrntPresent(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
   }
+
 }
