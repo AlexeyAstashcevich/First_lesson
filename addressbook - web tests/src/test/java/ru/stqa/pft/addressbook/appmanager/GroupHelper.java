@@ -32,6 +32,7 @@ public class GroupHelper extends HelperBase {
     selectGroupById(group.getId());
     deleteSelectedGroups();
     goToGroup();
+    groupCache = null;
   }
 
   public void modify(GroupData group) {
@@ -40,6 +41,7 @@ public class GroupHelper extends HelperBase {
     fillGroupCreation(group);
     submitGroupModification();
     goToGroup();
+    groupCache= null;
   }
 
 
@@ -74,6 +76,10 @@ public class GroupHelper extends HelperBase {
     click(By.cssSelector("input[value='" + id + "']"));
   }
 
+  public int count(){
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
   public void goToGroup() {
     click(By.linkText("group page"));
   }
@@ -91,23 +97,22 @@ public class GroupHelper extends HelperBase {
     fillGroupCreation(group);
     submitGroupCreation();
     goToGroup();
+    groupCache = null;
   }
-
-  public boolean isThereAGroup() {
-    return isElemrntPresent(By.name("selected[]"));
-  }
-
+  private Groups groupCache = null;
 
   public Groups all() {
-   Groups groups = new Groups();
+    if(groupCache != null){
+      return new Groups(groupCache);
+    }
+   groupCache = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      groups.add(new GroupData().withId(id).withName(name));
+      groupCache.add(new GroupData().withId(id).withName(name));
     }
-
-    return groups;
+    return groupCache;
   }
 
 

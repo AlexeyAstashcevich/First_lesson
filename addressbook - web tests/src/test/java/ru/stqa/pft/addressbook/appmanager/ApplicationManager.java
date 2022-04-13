@@ -64,7 +64,7 @@ public class ApplicationManager extends HelperBase {
     return navigationHelper;
   }
 
-  public ContactHelper getContactHelper() {
+  public ContactHelper contact() {
     return contactHelperHomework;
   }
 

@@ -14,9 +14,9 @@ public class NewContactCreationTest extends TestBase {
 
     @Test
     public void contactCreating() {
-        Contacts before = app.getContactHelper().getContactList();
-        app.getContactHelper().contactCreation(contactInfo);
-        Contacts after = app.getContactHelper().getContactList();
+        Contacts before = app.contact().all();
+        app.contact().contactCreation(contactInfo);
+        Contacts after = app.contact().all();
         assertThat(after, equalTo(before.withAdded(after.stream().sorted(Comparator.comparing(ContactData::getNameId).reversed()).findFirst().get())));
     }
 }

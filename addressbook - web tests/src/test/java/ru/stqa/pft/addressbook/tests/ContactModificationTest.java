@@ -13,13 +13,13 @@ public class ContactModificationTest extends TestBase {
     @Test
     public void contactModification() {
         if (!app.goTo().isThereAContact()) {
-            app.getContactHelper().contactCreation(contactInfo);
+            app.contact().contactCreation(contactInfo);
         }
-        Contacts before = app.getContactHelper().getContactList();
+        Contacts before = app.contact().all();
         int id = before.stream().mapToInt((g) -> g.getNameId()).max().getAsInt();
         modificatedInfo.setNameId(id);
-        app.getContactHelper().contactModification(modificatedInfo);
-        Contacts after = app.getContactHelper().getContactList();
+        app.contact().contactModification(modificatedInfo);
+        Contacts after = app.contact().all();
         assertThat(after, equalTo(before.without(before.stream().filter(x -> x.getNameId() == id).findAny().get())
                 .withAdded(after.stream().filter(x -> x.getNameId() == id).findAny().get())));
     }

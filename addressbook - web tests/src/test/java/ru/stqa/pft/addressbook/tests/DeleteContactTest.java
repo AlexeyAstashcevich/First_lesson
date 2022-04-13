@@ -14,12 +14,12 @@ public class DeleteContactTest extends TestBase {
     @Test
     public void deleteContact() {
         if (!app.goTo().isThereAContact()) {
-            app.getContactHelper().contactCreation(contactInfo);
+            app.contact().contactCreation(contactInfo);
         }
-        Contacts before = app.getContactHelper().getContactList();
+        Contacts before = app.contact().all();
         int id = before.stream().mapToInt(ContactData::getNameId).max().getAsInt();
-        app.getContactHelper().deleteContact(id);
-        Contacts after = app.getContactHelper().getContactList();
+        app.contact().deleteContact(id);
+        Contacts after = app.contact().all();
         assertThat(after, equalTo(before.without(before.stream().filter(x -> x.getNameId() == id).findAny().get())));
     }
 }

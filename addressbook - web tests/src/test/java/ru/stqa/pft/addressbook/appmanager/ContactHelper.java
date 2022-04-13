@@ -76,7 +76,7 @@ public class ContactHelper extends HelperBase {
     type(phonesData.getFax(), By.name("fax"));
   }
 
-  public Contacts getContactList() {
+  public Contacts all() {
     Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.tagName("tr"));
     for (int i = 1; i < elements.size(); i++) {
