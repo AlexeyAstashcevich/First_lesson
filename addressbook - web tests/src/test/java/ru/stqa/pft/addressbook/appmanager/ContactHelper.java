@@ -16,7 +16,7 @@ public class ContactHelper extends HelperBase {
 
   GroupHelper groupHelper = new GroupHelper(wd);
   NavigationHelper navigationHelper = new NavigationHelper(wd);
-
+  private Contacts contactsCache = null;
   public ContactHelper(WebDriver wd) {
 
     super(wd);
@@ -77,6 +77,9 @@ public class ContactHelper extends HelperBase {
   }
 
   public Contacts all() {
+    if (contactsCache != null){
+     return new Contacts(contactsCache);
+    }
     Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.tagName("tr"));
     for (int i = 1; i < elements.size(); i++) {
@@ -144,6 +147,7 @@ public class ContactHelper extends HelperBase {
     fillNotes(contactData);
     navigationHelper.submitNewContact();
     navigationHelper.goToHomepage();
+    contactsCache = null;
   }
 
   public void deleteContact(int id) {
@@ -151,6 +155,7 @@ public class ContactHelper extends HelperBase {
     navigationHelper.deleteContact();
     navigationHelper.submitDeleteContact();
     navigationHelper.goHomeHeadear();
+    contactsCache = null;
   }
 
   public void contactModification(ContactData modificatedInfo) {
@@ -174,8 +179,12 @@ public class ContactHelper extends HelperBase {
     fillNotes(modificatedInfo);
     navigationHelper.updateInformation();
     navigationHelper.goHomeHeadear();
+    contactsCache = null;
   }
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }
 
 
