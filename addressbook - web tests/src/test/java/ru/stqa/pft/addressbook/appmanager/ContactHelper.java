@@ -82,14 +82,46 @@ public class ContactHelper extends HelperBase {
     for (int i = 1; i < elements.size(); i++) {
       int id = Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value"));
       List<WebElement> colVals = elements.get(i).findElements(By.tagName("td"));
+      String allPhones = colVals.get(5).getText();
+      String allAddress= colVals.get(3).getText();
+      String allEmails = colVals.get(4).getText();
       contacts.add(new ContactDataBuilder()
               .nameId(id)
               .firstname(colVals.get(2).getText())
               .lastname(colVals.get(1).getText())
+              .withAllPhones(allPhones)
+              .withAllEmails(allEmails)
+              .withAllAddress(allAddress)
               .build());
     }
     return contacts;
   }
+
+  public ContactData infoFromEditForm(ContactData contact) {
+    navigationHelper.initContactModification(contact.getNameId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    String companyAddress = wd.findElement(By.name("address")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactDataBuilder()
+            .firstname(firstname)
+            .lastname(lastname)
+            .homePhone(home)
+            .mobilePhone(mobile)
+            .workPhone(work)
+            .companyAddress(companyAddress)
+            .email1(email)
+            .email2(email2)
+            .email3(email3)
+            .build();
+  }
+
 
   public void contactCreation(ContactData contactData) {
     navigationHelper.addNewContact();
@@ -114,7 +146,7 @@ public class ContactHelper extends HelperBase {
     navigationHelper.goToHomepage();
   }
 
-    public void deleteContact(int id) {
+  public void deleteContact(int id) {
     navigationHelper.chooseContactById(id);
     navigationHelper.deleteContact();
     navigationHelper.submitDeleteContact();
@@ -143,6 +175,7 @@ public class ContactHelper extends HelperBase {
     navigationHelper.updateInformation();
     navigationHelper.goHomeHeadear();
   }
+
 }
 
 

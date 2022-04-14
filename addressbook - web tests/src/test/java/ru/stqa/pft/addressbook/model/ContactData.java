@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
 public class ContactData {
   private String title;
   private String company;
@@ -25,10 +26,38 @@ public class ContactData {
   private String group;
   private String homepage;
   private boolean creation;
-  private int  nameId;
+  private int nameId;
   private LocalDate anniversary;
   private LocalDate birthday;
+  private String allPhones;
+  private String allEmails;
 
+  public String getAllAddress() {
+    return allAddress;
+  }
+
+  public void setAllAddress(String allAddress) {
+    this.allAddress = allAddress;
+  }
+
+  private String allAddress;
+
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public void setAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public void setAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+  }
 
   public int getNameId() {
     return nameId;

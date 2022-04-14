@@ -2,10 +2,20 @@ package ru.stqa.pft.addressbook.model;
 
 import java.time.LocalDate;
 
+
 public class ContactDataBuilder {
 
   private final ContactData contactData = new ContactData();
 
+  public ContactDataBuilder withAllEmails(String allEmails){
+    contactData.setAllEmails(allEmails);
+    return this;
+  }
+
+  public ContactDataBuilder withAllPhones(String allPhones){
+    contactData.setAllPhones(allPhones);
+    return this;
+  }
 
   public ContactDataBuilder creation(Boolean creation) {
     contactData.setCreation(creation);
@@ -131,5 +141,10 @@ public class ContactDataBuilder {
 
   public ContactData build() {
     return contactData;
+  }
+
+  public ContactDataBuilder withAllAddress(String allAddress) {
+    contactData.setAllAddress(allAddress);
+    return this;
   }
 }

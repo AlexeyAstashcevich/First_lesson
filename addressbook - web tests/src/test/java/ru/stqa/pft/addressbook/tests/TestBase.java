@@ -42,7 +42,7 @@ public class TestBase {
                 .group("Test 1")
                 .creation(false)
                 .secondaryAdress("Usa, Kex beach")
-                .secondaryPhone("11")
+              //  .secondaryPhone("11")
                 .notes("Just woman")
                 .build();
 
@@ -68,7 +68,7 @@ public class TestBase {
                 .group("Test 1")
                 .creation(true)
                 .secondaryAdress("Usa, Briton beach")
-                .secondaryPhone("48")
+               // .secondaryPhone("48")
                 .notes("Best friend")
                 .build();
     }
