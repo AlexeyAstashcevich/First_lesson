@@ -29,8 +29,8 @@ public class HelperBase {
     }
   }
 
-  protected void insertPhoto(String dyrectory) {
-    wd.findElement(By.name("photo")).sendKeys(new File(dyrectory).getAbsolutePath());
+  protected void insertPhoto(String directory) {
+    wd.findElement(By.name("photo")).sendKeys(new File(directory).getAbsolutePath());
   }
 
   public void login(String username, String password) {
