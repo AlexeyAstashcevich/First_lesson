@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-public class ContactIInfoTest extends TestBase {
+public class ContactInfoTest extends TestBase {
   @BeforeMethod
   public void ensurePredictions(){
     if (!app.goTo().isThereAContact()) {
@@ -38,7 +38,7 @@ public class ContactIInfoTest extends TestBase {
     return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
             .stream()
             .filter((s -> ! s.equals("")))
-            .map(ContactIInfoTest::cleanedPhones)
+            .map(ContactInfoTest::cleanedPhones)
             .collect(Collectors.joining("\n"));
   }
 
@@ -46,7 +46,7 @@ public class ContactIInfoTest extends TestBase {
     return Arrays.asList(contact.getEmail1(), contact.getEmail2(), contact.getEmail3())
             .stream()
             .filter((s -> ! s.equals("")))
-            .map(ContactIInfoTest::cleanedEmails)
+            .map(ContactInfoTest::cleanedEmails)
             .collect(Collectors.joining("\n"));
   }
 
