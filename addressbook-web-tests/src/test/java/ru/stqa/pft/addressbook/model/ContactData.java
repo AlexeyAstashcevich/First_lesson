@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -11,8 +13,11 @@ public class ContactData {
   private String email1;
   private String email2;
   private String email3;
+  @Expose
   private String firstname;
+  @Expose
   private String middleName;
+  @Expose
   private String lastname;
   private String nickname;
   private String notes;
