@@ -15,7 +15,7 @@ import java.util.List;
 public class GroupGenerator {
   @Parameter(names = "-c", description = "Groups count")
   public int count;
-  @Parameter(names = "-f", description = "File path")
+  @Parameter(names = "-f", description = "Target File")
   public String file;
 
 

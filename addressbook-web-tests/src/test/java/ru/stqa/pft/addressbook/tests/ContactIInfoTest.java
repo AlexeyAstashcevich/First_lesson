@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-public class ContactPhoneTest extends TestBase {
+public class ContactIInfoTest extends TestBase {
   @BeforeMethod
   public void ensurePredictions(){
     if (!app.goTo().isThereAContact()) {
@@ -27,6 +27,8 @@ public class ContactPhoneTest extends TestBase {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactDataFromEditorForm = app.contact().infoFromEditForm(contact);
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactDataFromEditorForm)));
+    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactDataFromEditorForm)));
+    assertThat(contact.getAllAddress(), equalTo((contactDataFromEditorForm.getCompanyAddress())));
 
   }
 
@@ -36,12 +38,25 @@ public class ContactPhoneTest extends TestBase {
     return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
             .stream()
             .filter((s -> ! s.equals("")))
-            .map(ContactPhoneTest::cleaned)
+            .map(ContactIInfoTest::cleanedPhones)
+            .collect(Collectors.joining("\n"));
+  }
+
+  public String mergeEmails(ContactData contact) {
+    return Arrays.asList(contact.getEmail1(), contact.getEmail2(), contact.getEmail3())
+            .stream()
+            .filter((s -> ! s.equals("")))
+            .map(ContactIInfoTest::cleanedEmails)
             .collect(Collectors.joining("\n"));
   }
 
 
-  public static String cleaned(String phone) {
+  public static String cleanedPhones(String phone) {
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+  }
+
+
+  public static String cleanedEmails(String phone) {
+    return phone.replaceAll("\\s", "");
   }
 }
