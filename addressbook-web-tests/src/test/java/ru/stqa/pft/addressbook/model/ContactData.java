@@ -32,7 +32,7 @@ public class ContactData {
   private String allPhones;
   private String allEmails;
 
-  public String getAllAddress() {
+  public String getAddress() {
     return allAddress;
   }
 
