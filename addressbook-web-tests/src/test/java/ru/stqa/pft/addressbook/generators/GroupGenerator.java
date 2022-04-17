@@ -16,73 +16,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GroupGenerator {
-  @Parameter(names = "-c", description = "Groups count")
-  public int count;
-  @Parameter(names = "-f", description = "Target File")
-  public String file;
-  @Parameter(names = "-d", description = "Data format")
-  public String format;
+    @Parameter(names = "-c", description = "Groups count")
+    public int count;
+    @Parameter(names = "-f", description = "Target File")
+    public String file;
+    @Parameter(names = "-d", description = "Data format")
+    public String format;
 
 
-  public static void main(String[] args) throws IOException {
-    GroupGenerator groupGenerator = new GroupGenerator();
-    JCommander jCommander =new JCommander(groupGenerator);
-    try {
-      jCommander.parse(args);
-    }catch (ParameterException ex){
-      jCommander.usage();
-      return;
+    public static void main(String[] args) throws IOException {
+        GroupGenerator groupGenerator = new GroupGenerator();
+        JCommander jCommander = new JCommander(groupGenerator);
+        try {
+            jCommander.parse(args);
+        } catch (ParameterException ex) {
+            jCommander.usage();
+            return;
+        }
+        groupGenerator.run();
     }
-    groupGenerator.run();
-  }
 
-  private void run() throws IOException {
-    List<GroupData> groups = generateGroups(count);
-    if (format.equals("csv")) {
-      saveAsCsv(groups, new File(file));
-    } else if (format.equals("xml")) {
-      saveAsXml(groups, new File(file));
-    } else if (format.equals("json")) {
-      saveAsJson(groups, new File(file));
-    } else {
-      System.out.println("Unrecognized format");
+    private void run() throws IOException {
+        List<GroupData> groups = generateGroups(count);
+        if (format.equals("csv")) {
+            saveAsCsv(groups, new File(file));
+        } else if (format.equals("xml")) {
+            saveAsXml(groups, new File(file));
+        } else if (format.equals("json")) {
+            saveAsJson(groups, new File(file));
+        } else {
+            System.out.println("Unrecognized format");
+        }
     }
-  }
-  private void saveAsXml(List<GroupData> groups, File file) throws IOException {
 
-    XStream xstream = new XStream();
-    xstream.processAnnotations(GroupData.class);
-    String xml = xstream.toXML(groups);
-    Writer writer = new FileWriter(file);
-    xstream.alias("groups", GroupData.class);
-    writer.write(xml);
-    writer.close();
-  }
+    private void saveAsXml(List<GroupData> groups, File file) throws IOException {
 
-  private void saveAsJson(List<GroupData> groups, File file) throws IOException {
-
-    Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-    String json = gson.toJson(groups);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
-  }
-
-  private  List<GroupData> generateGroups(int count) {
-    List<GroupData> groups = new ArrayList<>();
-    for (int i = 0; i < count; i++) {
-      groups.add(new GroupData().withName(String.format("Test %s", i))
-              .withFooter(String.format("Footer %s", i))
-              .withHeader(String.format("Header %s", i)));
+        XStream xstream = new XStream();
+        xstream.processAnnotations(GroupData.class);
+        String xml = xstream.toXML(groups);
+        try (Writer writer = new FileWriter(file);) {
+            xstream.alias("groups", GroupData.class);
+            writer.write(xml);
+        }
     }
-    return groups;
-  }
 
-  private  void saveAsCsv(List<GroupData> groups, File file) throws IOException {
-    Writer writer = new FileWriter(file);
-    for (GroupData group : groups) {
-      writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
+    private void saveAsJson(List<GroupData> groups, File file) throws IOException {
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        String json = gson.toJson(groups);
+        try (Writer writer = new FileWriter(file)) {
+            writer.write(json);
+        }
     }
-    writer.close();
-  }
+
+    private List<GroupData> generateGroups(int count) {
+        List<GroupData> groups = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            groups.add(new GroupData().withName(String.format("Test %s", i))
+                    .withFooter(String.format("Footer %s", i))
+                    .withHeader(String.format("Header %s", i)));
+        }
+        return groups;
+    }
+
+    private void saveAsCsv(List<GroupData> groups, File file) throws IOException {
+        try (Writer writer = new FileWriter(file)) {
+            for (GroupData group : groups) {
+                writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
+            }
+        }
+    }
 }
