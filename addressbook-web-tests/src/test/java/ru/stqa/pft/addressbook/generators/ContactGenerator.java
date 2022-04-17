@@ -25,44 +25,44 @@ public class ContactGenerator {
 
 
     public static void main(String[] args) throws IOException {
-      ContactGenerator contactGenerator = new ContactGenerator();
-      JCommander jCommander =new JCommander(contactGenerator);
-      try {
-        jCommander.parse(args);
-      }catch (ParameterException ex){
-        jCommander.usage();
-        return;
-      }
-      contactGenerator.run();
+        ContactGenerator contactGenerator = new ContactGenerator();
+        JCommander jCommander = new JCommander(contactGenerator);
+        try {
+            jCommander.parse(args);
+        } catch (ParameterException ex) {
+            jCommander.usage();
+            return;
+        }
+        contactGenerator.run();
     }
 
     private void run() throws IOException {
-      List <ContactData> contacts = generateContacts(count);
-      if(format.equals("json")) {
-        saveAsJson(contacts , new File(file));
-      }else {
-        System.out.println("Unrecognized format");
-      }
+        List<ContactData> contacts = generateContacts(count);
+        if (format.equals("json")) {
+            saveAsJson(contacts, new File(file));
+        } else {
+            System.out.println("Unrecognized format");
+        }
     }
 
     private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
 
-      Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-      String json = gson.toJson(contacts);
-      Writer writer = new FileWriter(file);
-      writer.write(json);
-      writer.close();
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        String json = gson.toJson(contacts);
+        Writer writer = new FileWriter(file);
+        writer.write(json);
+        writer.close();
     }
 
-    private  List<ContactData> generateContacts(int count) {
-      List<ContactData> contacts = new ArrayList<>();
-      for (int i = 0; i < count; i++) {
-        contacts.add(new ContactDataBuilder()
-                .firstname(String.format("Teste %s", i))
-                .middleName(String.format("%s", i))
-                .lastname(String.format("%s", i))
-                .build());
-      }
-      return contacts;
+    private List<ContactData> generateContacts(int count) {
+        List<ContactData> contacts = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            contacts.add(new ContactDataBuilder()
+                    .firstname(String.format("Flex %s", i))
+                    .middleName(String.format("Boomer %s", i))
+                    .lastname(String.format("Popper %s", i))
+                    .build());
+        }
+        return contacts;
     }
-  }
+}

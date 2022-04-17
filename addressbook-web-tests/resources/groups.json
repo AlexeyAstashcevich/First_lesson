@@ -1,52 +1,22 @@
 [
   {
     "name": "Test 0",
-    "header": "0",
-    "footer": "0"
+    "header": "Header 0",
+    "footer": "Footer 0"
   },
   {
     "name": "Test 1",
-    "header": "1",
-    "footer": "1"
+    "header": "Header 1",
+    "footer": "Footer 1"
   },
   {
     "name": "Test 2",
-    "header": "2",
-    "footer": "2"
+    "header": "Header 2",
+    "footer": "Footer 2"
   },
   {
     "name": "Test 3",
-    "header": "3",
-    "footer": "3"
-  },
-  {
-    "name": "Test 4",
-    "header": "4",
-    "footer": "4"
-  },
-  {
-    "name": "Test 5",
-    "header": "5",
-    "footer": "5"
-  },
-  {
-    "name": "Test 6",
-    "header": "6",
-    "footer": "6"
-  },
-  {
-    "name": "Test 7",
-    "header": "7",
-    "footer": "7"
-  },
-  {
-    "name": "Test 8",
-    "header": "8",
-    "footer": "8"
-  },
-  {
-    "name": "Test 9",
-    "header": "9",
-    "footer": "9"
+    "header": "Header 3",
+    "footer": "Footer 3"
   }
 ]

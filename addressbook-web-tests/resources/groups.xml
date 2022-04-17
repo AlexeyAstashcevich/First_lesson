@@ -1,52 +1,22 @@
 <list>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 0</group>
-    <header>0</header>
-    <footer>0</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 1</group>
-    <header>1</header>
-    <footer>1</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 2</group>
-    <header>2</header>
-    <footer>2</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 3</group>
-    <header>3</header>
-    <footer>3</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 4</group>
-    <header>4</header>
-    <footer>4</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 5</group>
-    <header>5</header>
-    <footer>5</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 6</group>
-    <header>6</header>
-    <footer>6</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 7</group>
-    <header>7</header>
-    <footer>7</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 8</group>
-    <header>8</header>
-    <footer>8</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
-  <ru.stqa.pft.addressbook.model.GroupData>
-    <group>Test 9</group>
-    <header>9</header>
-    <footer>9</footer>
-  </ru.stqa.pft.addressbook.model.GroupData>
+  <group>
+    <name>Test 0</name>
+    <header>Header 0</header>
+    <footer>Footer 0</footer>
+  </group>
+  <group>
+    <name>Test 1</name>
+    <header>Header 1</header>
+    <footer>Footer 1</footer>
+  </group>
+  <group>
+    <name>Test 2</name>
+    <header>Header 2</header>
+    <footer>Footer 2</footer>
+  </group>
+  <group>
+    <name>Test 3</name>
+    <header>Header 3</header>
+    <footer>Footer 3</footer>
+  </group>
 </list>

@@ -129,22 +129,24 @@ public class ContactHelper extends HelperBase {
   public void contactCreation(ContactData contactData) {
     navigationHelper.addNewContact();
     fillNamesForms(contactData);
-    navigationHelper.addPhoto(contactData);
-    fillCompanyForms(contactData);
-    fillPhonesForms(contactData);
-    fillEmailsForms(contactData);
-    navigationHelper.fillHomepage(contactData);
-    fillBirthday(contactData.getBirthday());
-    fillAnyversary(contactData.getAnniversary());
-    if (groupHelper.checkGroups()) {
-      String i = wd.findElement(By.name("new_group")).getText();
-      if (i.contains("Test 1")) {
-        groupHelper.chooseGroup(contactData);
-      }
-    }
-    fillSecondaryAddress(contactData);
-    fillSecondaryPhone(contactData);
-    fillNotes(contactData);
+   if(contactData.getPhotoDirectory() != null) {
+     navigationHelper.addPhoto(contactData);
+     fillCompanyForms(contactData);
+     fillPhonesForms(contactData);
+     fillEmailsForms(contactData);
+     navigationHelper.fillHomepage(contactData);
+     fillBirthday(contactData.getBirthday());
+     fillAnyversary(contactData.getAnniversary());
+     if (groupHelper.checkGroups()) {
+       String i = wd.findElement(By.name("new_group")).getText();
+       if (i.contains("Test 1")) {
+         groupHelper.chooseGroup(contactData);
+       }
+     }
+     fillSecondaryAddress(contactData);
+     fillSecondaryPhone(contactData);
+     fillNotes(contactData);
+   }
     navigationHelper.submitNewContact();
     navigationHelper.goToHomepage();
     contactsCache = null;
