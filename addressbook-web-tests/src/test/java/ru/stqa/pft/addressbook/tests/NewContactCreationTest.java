@@ -21,7 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class NewContactCreationTest extends TestBase {
     @DataProvider
     public Iterator<Object[]> validGroupsFromJson() throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader("resources/contacts.json"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("contacts.json"))) {
             String json = "";
             String line = reader.readLine();
             while (line != null) {
