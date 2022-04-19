@@ -24,7 +24,7 @@ public class DeleteContactTest extends TestBase {
         Contacts before = app.contact().all();
         int id = before.stream().mapToInt(ContactData::getNameId).max().getAsInt();
         app.contact().deleteContact(id);
-        assertThat(app.contact().count(),equalTo(before.size()-1));
+        assertThat(app.group().count(),equalTo(before.size()-1));
         Contacts after = app.contact().all();
         assertThat(after, equalTo(before.without(before.stream().filter(x -> x.getNameId() == id).findAny().get())));
     }

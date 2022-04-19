@@ -24,7 +24,7 @@ public class GroupCreationTest extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validGroupsFromXml() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File("resources/groups.xml")));
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/java/ru/stqa/pft/addressbook/resources/groups.xml")));
         String xml = "";
         String line = reader.readLine();
         while (line != null) {
@@ -39,7 +39,7 @@ public class GroupCreationTest extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validGroupsFromJson() throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader("resources/groups.json"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/test/java/ru/stqa/pft/addressbook/resources/groups.json"))) {
             String json = "";
             String line = reader.readLine();
             while (line != null) {

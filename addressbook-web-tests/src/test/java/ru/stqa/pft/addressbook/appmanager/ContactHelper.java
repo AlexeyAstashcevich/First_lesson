@@ -17,6 +17,7 @@ public class ContactHelper extends HelperBase {
   GroupHelper groupHelper = new GroupHelper(wd);
   NavigationHelper navigationHelper = new NavigationHelper(wd);
   private Contacts contactsCache = null;
+
   public ContactHelper(WebDriver wd) {
 
     super(wd);
@@ -77,8 +78,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public Contacts all() {
-    if (contactsCache != null){
-     return new Contacts(contactsCache);
+    if (contactsCache != null) {
+      return new Contacts(contactsCache);
     }
     Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.tagName("tr"));
@@ -86,7 +87,7 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value"));
       List<WebElement> colVals = elements.get(i).findElements(By.tagName("td"));
       String allPhones = colVals.get(5).getText();
-      String allAddress= colVals.get(3).getText();
+      String allAddress = colVals.get(3).getText();
       String allEmails = colVals.get(4).getText();
       contacts.add(new ContactDataBuilder()
               .nameId(id)
@@ -129,30 +130,31 @@ public class ContactHelper extends HelperBase {
   public void contactCreation(ContactData contactData) {
     navigationHelper.addNewContact();
     fillNamesForms(contactData);
-   if(contactData.getPhotoDirectory() != null) {
-     navigationHelper.addPhoto(contactData);
-     fillCompanyForms(contactData);
-     fillPhonesForms(contactData);
-     fillEmailsForms(contactData);
-     navigationHelper.fillHomepage(contactData);
-     fillBirthday(contactData.getBirthday());
-     fillAnyversary(contactData.getAnniversary());
-     if (groupHelper.checkGroups()) {
-       String i = wd.findElement(By.name("new_group")).getText();
-       if (i.contains("Test 1")) {
-         groupHelper.chooseGroup(contactData);
-       }
-     }
-     fillSecondaryAddress(contactData);
-     fillSecondaryPhone(contactData);
-     fillNotes(contactData);
-   }
+    if (contactData.getPhotoDirectory() != null) {
+      navigationHelper.addPhoto(contactData);
+      fillCompanyForms(contactData);
+      fillPhonesForms(contactData);
+      fillEmailsForms(contactData);
+      navigationHelper.fillHomepage(contactData);
+      fillBirthday(contactData.getBirthday());
+      fillAnyversary(contactData.getAnniversary());
+      if (groupHelper.checkGroups()) {
+        String i = wd.findElement(By.name("new_group")).getText();
+        if (i.contains("Test 1")) {
+          groupHelper.chooseGroup(contactData);
+        }
+      }
+      fillSecondaryAddress(contactData);
+      fillSecondaryPhone(contactData);
+      fillNotes(contactData);
+    }
     navigationHelper.submitNewContact();
     navigationHelper.goToHomepage();
     contactsCache = null;
   }
 
   public void deleteContact(int id) {
+    navigationHelper.goHomeHeadear();
     navigationHelper.chooseContactById(id);
     navigationHelper.deleteContact();
     navigationHelper.submitDeleteContact();
@@ -161,6 +163,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void contactModification(ContactData modificatedInfo) {
+    navigationHelper.goHomeHeadear();
     navigationHelper.initContactModification(modificatedInfo.getNameId());
     fillNamesForms(modificatedInfo);
     navigationHelper.addPhoto(modificatedInfo);

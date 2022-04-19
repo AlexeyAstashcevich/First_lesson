@@ -77,7 +77,7 @@ public class NavigationHelper extends HelperBase {
   }
 
   public boolean isThereAContact() {
-    return isElemrntPresent(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+    return isElemrntPresent(By.name("selected[]"));
   }
 
 }

@@ -25,7 +25,7 @@ public class TestBase {
                 .middleName("Laini")
                 .lastname("Lomper")
                 .nickname("Lomovoz")
-                .photoDirectory("resources/Jojo.jpg")
+                .photoDirectory("src/test/java/ru/stqa/pft/addressbook/resources/jojo.jpg")
                 .title("Bjo")
                 .company("Kex")
                 .companyAddress("Usa, malahon beach 42")
@@ -42,7 +42,7 @@ public class TestBase {
                 .group("Test 1")
                 .creation(false)
                 .secondaryAdress("Usa, Kex beach")
-              //  .secondaryPhone("11")
+                .secondaryPhone("11")
                 .notes("Just woman")
                 .build();
 
@@ -51,7 +51,7 @@ public class TestBase {
                 .middleName("Bolduin")
                 .lastname("Bolduin")
                 .nickname("Boldi")
-                .photoDirectory("resources/Bolduin.jpg")
+                .photoDirectory("src/test/java/ru/stqa/pft/addressbook/resources/Bolduin.jpg")
                 .title("Boldo-Voldo")
                 .company("Fox")
                 .companyAddress("Usa, bryton beach 48")

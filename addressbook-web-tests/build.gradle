@@ -13,8 +13,14 @@ dependencies {
     implementation 'com.thoughtworks.xstream:xstream:1.4.19'
 }
 
-test{
+task testGroups(type: Test){
     useTestNG{
+        suites 'src/test/java/ru/stqa/pft/addressbook/resources/testng-Groups.xml'
+    }
+}
 
+task testContacts(type: Test){
+    useTestNG{
+        suites 'src/test/java/ru/stqa/pft/addressbook/resources/testng-Contacts.xml'
     }
 }
