@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,15 +16,21 @@ import java.util.Objects;
 @Entity
 @Table(name = "group_list")
 public class GroupData {
+
     @Column(name = "group_name")
     @Expose
     private String name;
+
     @Column(name = "group_header")
     @Expose
     private String header;
-    @Expose
+
+
     @Column(name = "group_footer")
+    @Expose
+    @Type(type = "text")
     private String footer;
+
     @Column(name = "group_id")
     @XStreamOmitField
     @Id
