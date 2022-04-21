@@ -40,7 +40,7 @@ public class NavigationHelper extends HelperBase {
   }
 
   public void addPhoto(ContactData photoData) {
-    insertPhoto(photoData.getPhotoDirectory());
+    insertPhoto(photoData.getPhoto());
   }
 
   public void chooseContactById(int id){

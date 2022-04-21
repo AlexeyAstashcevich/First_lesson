@@ -130,7 +130,7 @@ public class ContactHelper extends HelperBase {
   public void contactCreation(ContactData contactData) {
     navigationHelper.addNewContact();
     fillNamesForms(contactData);
-    if (contactData.getPhotoDirectory() != null) {
+    if (contactData.getPhoto() != null) {
       navigationHelper.addPhoto(contactData);
       fillCompanyForms(contactData);
       fillPhonesForms(contactData);
@@ -163,7 +163,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public void contactModification(ContactData modificatedInfo) {
-    navigationHelper.goHomeHeadear();
     navigationHelper.initContactModification(modificatedInfo.getNameId());
     fillNamesForms(modificatedInfo);
     navigationHelper.addPhoto(modificatedInfo);

@@ -110,7 +110,7 @@ public class ContactDataBuilder {
   }
 
   public ContactDataBuilder photoDirectory(String photoDirectory) {
-    contactData.setPhotoDirectory(photoDirectory);
+    contactData.setPhoto(photoDirectory);
     return this;
   }
 

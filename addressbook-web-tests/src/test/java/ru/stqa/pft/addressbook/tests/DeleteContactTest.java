@@ -21,11 +21,11 @@ public class DeleteContactTest extends TestBase {
 
     @Test
     public void deleteContact() {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         int id = before.stream().mapToInt(ContactData::getNameId).max().getAsInt();
         app.contact().deleteContact(id);
         assertThat(app.group().count(),equalTo(before.size()-1));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before.without(before.stream().filter(x -> x.getNameId() == id).findAny().get())));
     }
 }

@@ -1,41 +1,100 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
+  @Column(name = "title")
   private String title;
+  @Column(name = "company")
   private String company;
+  @Column(name = "address")
+  @Type(type = "text")
   private String companyAddress;
+  @Column(name = "email")
+  @Type(type = "text")
   private String email1;
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
   @Expose
+  @Column(name = "firstname")
   private String firstname;
   @Expose
+  @Column(name = "middleName")
   private String middleName;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return creation == that.creation && nameId == that.nameId && Objects.equals(title, that.title) && Objects.equals(company, that.company) && Objects.equals(companyAddress, that.companyAddress) && Objects.equals(email1, that.email1) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(firstname, that.firstname) && Objects.equals(middleName, that.middleName) && Objects.equals(lastname, that.lastname) && Objects.equals(nickname, that.nickname) && Objects.equals(notes, that.notes) && Objects.equals(homePhone, that.homePhone) && Objects.equals(mobilePhone, that.mobilePhone) && Objects.equals(workPhone, that.workPhone) && Objects.equals(fax, that.fax) && Objects.equals(secondaryAdress, that.secondaryAdress) && Objects.equals(secondaryPhone, that.secondaryPhone) && Objects.equals(photo, that.photo) && Objects.equals(homepage, that.homepage) && Objects.equals(anniversary, that.anniversary);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, company, companyAddress, email1, email2, email3, firstname, middleName, lastname, nickname, notes, homePhone, mobilePhone, workPhone, fax, secondaryAdress, secondaryPhone, photo, homepage, creation, nameId, anniversary);
+  }
+
   @Expose
+  @Column(name = "lastname")
   private String lastname;
+  @Column(name = "nickname")
   private String nickname;
+  @Column(name = "notes")
+  @Type(type = "text")
   private String notes;
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+  @Column(name = "fax")
+  @Type(type = "text")
   private String fax;
+  @Column(name = "address2")
+  @Type(type = "text")
   private String secondaryAdress;
+  @Type(type = "text")
+  @Column(name = "phone2")
   private String secondaryPhone;
-  private String photoDirectory;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
+  @Transient
   private String group;
+  @Column(name = "homepage")
+  @Type(type = "text")
   private String homepage;
+  @Transient
   private boolean creation;
+  @Id
+  @Column(name = "id")
   private int nameId;
+  @Transient
   private LocalDate anniversary;
+  @Transient
   private LocalDate birthday;
+  @Transient
   private String allPhones;
+  @Transient
   private String allEmails;
+  @Transient
+  private String allAddress;
 
   public String getAddress() {
     return allAddress;
@@ -44,9 +103,6 @@ public class ContactData {
   public void setAllAddress(String allAddress) {
     this.allAddress = allAddress;
   }
-
-  private String allAddress;
-
 
   public String getAllEmails() {
     return allEmails;
@@ -96,12 +152,12 @@ public class ContactData {
     this.group = group;
   }
 
-  public String getPhotoDirectory() {
-    return photoDirectory;
+  public String getPhoto() {
+    return photo;
   }
 
-  public void setPhotoDirectory(String photoDirectory) {
-    this.photoDirectory = photoDirectory;
+  public void setPhoto(String photo) {
+    this.photo = photo;
   }
 
   public String getSecondaryPhone() {
@@ -256,19 +312,6 @@ public class ContactData {
 
   public void setBirthday(LocalDate birthday) {
     this.birthday = birthday;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return nameId == that.nameId && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(firstname, lastname, nameId);
   }
 
   @Override

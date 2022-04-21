@@ -18,11 +18,11 @@ public class ContactModificationTest extends TestBase {
 
     @Test
     public void contactModification() {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         int id = before.stream().mapToInt((g) -> g.getNameId()).max().getAsInt();
         modificatedInfo.setNameId(id);
         app.contact().contactModification(modificatedInfo);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before.without(before.stream().filter(x -> x.getNameId() == id).findAny().get())
                 .withAdded(after.stream().filter(x -> x.getNameId() == id).findAny().get())));
     }

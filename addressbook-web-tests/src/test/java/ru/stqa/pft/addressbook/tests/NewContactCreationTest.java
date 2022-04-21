@@ -38,10 +38,10 @@ public class NewContactCreationTest extends TestBase {
 
         @Test(dataProvider = "validGroupsFromJson")
         public void contactCreating (ContactData contact){
-            Contacts before = app.contact().all();
+            Contacts before = app.db().contacts();
             app.contact().contactCreation(contact);
             assertThat(app.group().count(), equalTo(before.size() + 1));
-            Contacts after = app.contact().all();
+            Contacts after = app.db().contacts();
             assertThat(after, equalTo(before.withAdded(after.stream().sorted(Comparator.comparing(ContactData::getNameId).reversed()).findFirst().get())));
         }
     }

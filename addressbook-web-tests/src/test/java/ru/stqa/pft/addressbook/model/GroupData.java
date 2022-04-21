@@ -23,8 +23,21 @@ public class GroupData {
 
     @Column(name = "group_header")
     @Expose
+    @Type(type = "text")
     private String header;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GroupData groupData = (GroupData) o;
+        return id == groupData.id && Objects.equals(name, groupData.name) && Objects.equals(header, groupData.header) && Objects.equals(footer, groupData.footer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, header, footer, id);
+    }
 
     @Column(name = "group_footer")
     @Expose
@@ -44,19 +57,6 @@ public class GroupData {
     public GroupData withId(int id) {
         this.id = id;
         return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GroupData groupData = (GroupData) o;
-        return id == groupData.id && Objects.equals(name, groupData.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, id);
     }
 
     @Override
