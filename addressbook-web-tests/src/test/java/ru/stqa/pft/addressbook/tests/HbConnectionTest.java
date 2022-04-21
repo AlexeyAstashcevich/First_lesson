@@ -16,8 +16,6 @@ public class HbConnectionTest {
 
     @BeforeMethod
     protected void setUp() throws Exception {
-        Configuration conf = new Configuration();
-        conf.configure("ru/stqa/pft/addressbook/resources/hibernate.cfg.xml");
         // A SessionFactory is set up once for an application!
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
