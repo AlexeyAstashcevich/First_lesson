@@ -117,7 +117,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public boolean checkGroupForAdd() {
-    return isElemrntPresent((By.name("group"))));
+    return isElemrntPresent(By.name("group"));
   }
 
 

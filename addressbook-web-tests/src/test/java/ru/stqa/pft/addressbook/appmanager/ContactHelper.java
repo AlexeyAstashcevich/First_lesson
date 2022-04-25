@@ -201,13 +201,7 @@ public class ContactHelper extends HelperBase {
 
   public void deleteContactFromGroup(int id){
     navigationHelper.goHome();
-    if (groupHelper.checkGroups()) {
-      String i = wd.findElement(By.name("group")).getText();
-      if (i.contains("Test 0")) {
         navigationHelper.chooseGroupForContacts();
-      }
-    }
-
     if (!isElemrntPresent(By.name("selected[]"))){
       navigationHelper.goHome();
       contactToGroup(id);
