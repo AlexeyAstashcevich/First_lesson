@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class NavigationHelper extends HelperBase {
@@ -73,11 +74,24 @@ public class NavigationHelper extends HelperBase {
   }
 
   public void goHome() {
-    click(By.xpath("/html/body/div/div[4]/div/i/a[2]"));
+    click(By.id("logo"));
   }
 
   public boolean isThereAContact() {
     return isElemrntPresent(By.name("selected[]"));
   }
 
+  public void addToGroup() {
+    click(By.name("add"));
+  }
+
+  public void chooseGroupForContacts() {
+    click(By.name("group"));
+    select(By.name("group"),"Test 0");
+   // new Select(wd.findElement(By.name("group"))).selectByVisibleText("Test 0");
+  }
+
+  public void remooveFromGroup() {
+    click(By.name("remove"));
+  }
 }

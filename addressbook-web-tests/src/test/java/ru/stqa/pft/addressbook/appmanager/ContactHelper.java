@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -17,6 +18,7 @@ public class ContactHelper extends HelperBase {
   GroupHelper groupHelper = new GroupHelper(wd);
   NavigationHelper navigationHelper = new NavigationHelper(wd);
   private Contacts contactsCache = null;
+  DbHelper dbHelper;
 
   public ContactHelper(WebDriver wd) {
 
@@ -136,8 +138,10 @@ public class ContactHelper extends HelperBase {
       fillPhonesForms(contactData);
       fillEmailsForms(contactData);
       navigationHelper.fillHomepage(contactData);
-      fillBirthday(contactData.getBirthday());
-      fillAnyversary(contactData.getAnniversary());
+      if (contactData.getBirthday() != null) {
+        fillBirthday(contactData.getBirthday());
+        fillAnyversary(contactData.getAnniversary());
+      }
       if (groupHelper.checkGroups()) {
         String i = wd.findElement(By.name("new_group")).getText();
         if (i.contains("Test 1")) {
@@ -189,7 +193,32 @@ public class ContactHelper extends HelperBase {
   public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
+  public void contactToGroup(int id){
+    navigationHelper.chooseContactById(id);
+    navigationHelper.addToGroup();
+  }
+
+
+  public void deleteContactFromGroup(int id){
+    navigationHelper.goHome();
+    if (groupHelper.checkGroups()) {
+      String i = wd.findElement(By.name("group")).getText();
+      if (i.contains("Test 0")) {
+        navigationHelper.chooseGroupForContacts();
+      }
+    }
+
+    if (!isElemrntPresent(By.name("selected[]"))){
+      navigationHelper.goHome();
+      contactToGroup(id);
+      navigationHelper.goHomeHeadear();
+      navigationHelper.chooseGroupForContacts();
+    }
+    navigationHelper.chooseContactById(id);
+    navigationHelper.remooveFromGroup();
+  }
 }
+
 
 
 

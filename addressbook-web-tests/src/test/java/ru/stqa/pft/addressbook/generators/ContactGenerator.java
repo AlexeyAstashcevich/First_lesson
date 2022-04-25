@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,9 +59,29 @@ public class ContactGenerator {
         List<ContactData> contacts = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactDataBuilder()
-                    .firstname(String.format("Flex %s", i))
+                    .firstname(String.format("Flry %s", i))
                     .middleName(String.format("Boomer %s", i))
                     .lastname(String.format("Popper %s", i))
+                    .nickname(String.format("Boldi %s", i))
+                    .photoDirectory("src/test/java/ru/stqa/pft/addressbook/resources/Bolduin.jpg")
+                    .title(String.format("Boldo-Voldo %s", i))
+                    .company(String.format("Fox %s", i))
+                    .companyAddress(String.format("Usa, bryton beach 48 %s", i))
+                    .homePhone(String.format("+78954523%s", i))
+                    .fax(String.format("None%s", i))
+                    .mobilePhone(String.format("+735645645%s", i))
+                    .workPhone(String.format("+2344234432%s", i))
+                    .email1(String.format("boldi@jojo%s.com",i))
+                    .email2(String.format("holo@gmai%s.com",i))
+                    .email3(String.format("gop@jojo%s.com",i))
+                    .homepage(String.format("yandex%s.com",i))
+//                    .birthday(LocalDate.of(1991, 5, 13))
+//                    .anniversary(LocalDate.of(1889, 6, 12))
+                   // .group(String.format("Test 1"))
+//                    .creation(true)
+                    .secondaryAdress(String.format("Usa, Briton beach %s",i))
+                    // .secondaryPhone("48")
+                    .notes(String.format("Best friend%s",i))
                     .build());
         }
         return contacts;

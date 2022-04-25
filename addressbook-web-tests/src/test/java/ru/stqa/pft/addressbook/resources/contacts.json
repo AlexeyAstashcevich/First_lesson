@@ -1,22 +1,22 @@
 [
   {
-    "firstname": "Flex 0",
+    "title": "Boldo-Voldo 0",
+    "company": "Fox 0",
+    "companyAddress": "Usa, bryton beach 48 0",
+    "email1": "boldi@jojo0.com",
+    "email2": "holo@gmai0.com",
+    "email3": "gop@jojo0.com",
+    "firstname": "Flry 0",
     "middleName": "Boomer 0",
-    "lastname": "Popper 0"
-  },
-  {
-    "firstname": "Flex 1",
-    "middleName": "Boomer 1",
-    "lastname": "Popper 1"
-  },
-  {
-    "firstname": "Flex 2",
-    "middleName": "Boomer 2",
-    "lastname": "Popper 2"
-  },
-  {
-    "firstname": "Flex 3",
-    "middleName": "Boomer 3",
-    "lastname": "Popper 3"
+    "lastname": "Popper 0",
+    "nickname": "Boldi 0",
+    "notes": "Best friend0",
+    "homePhone": "+789545230",
+    "mobilePhone": "+7356456450",
+    "workPhone": "+23442344320",
+    "fax": "None0",
+    "secondaryAdress": "Usa, Briton beach 0",
+    "photo": "src/test/java/ru/stqa/pft/addressbook/resources/Bolduin.jpg",
+    "homepage": "yandex0.com"
   }
 ]

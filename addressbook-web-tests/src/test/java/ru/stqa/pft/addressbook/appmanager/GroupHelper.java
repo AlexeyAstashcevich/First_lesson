@@ -20,7 +20,7 @@ public class GroupHelper extends HelperBase {
   public void chooseGroup(ContactData groupData) {
     if (groupData.isCreation()) {
       click(By.name("new_group"));
-      select(By.name("new_group"), groupData.getGroup());
+      select(By.name("new_group"), String.valueOf(groupData.getGroup()));
       click(By.xpath("//div[@id='content']/form/select[5]/option[2]"));
     } else {
       Assert.assertFalse(isElemrntPresent(By.name("new group")));
@@ -81,7 +81,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void goToGroup() {
-    click(By.linkText("group page"));
+    click(By.linkText("groups"));
   }
 
   public void initGroupModification() {
@@ -93,6 +93,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void create(GroupData group) {
+    goToGroup();
     initGroupCreation();
     fillGroupCreation(group);
     submitGroupCreation();
@@ -113,6 +114,10 @@ public class GroupHelper extends HelperBase {
       groupCache.add(new GroupData().withId(id).withName(name));
     }
     return groupCache;
+  }
+
+  public boolean checkGroupForAdd() {
+    return isElemrntPresent((By.name("group"))));
   }
 
 

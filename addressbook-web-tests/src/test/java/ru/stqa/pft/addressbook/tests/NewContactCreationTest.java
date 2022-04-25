@@ -6,6 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -42,6 +43,8 @@ public class NewContactCreationTest extends TestBase {
             app.contact().contactCreation(contact);
             assertThat(app.group().count(), equalTo(before.size() + 1));
             Contacts after = app.db().contacts();
-            assertThat(after, equalTo(before.withAdded(after.stream().sorted(Comparator.comparing(ContactData::getNameId).reversed()).findFirst().get())));
+            assertThat(after, equalTo(before.withAdded(after.stream()
+                    .sorted(Comparator.comparing(ContactData::getNameId).reversed()).findFirst().get())));
+            verifyContactListInUi();
         }
     }

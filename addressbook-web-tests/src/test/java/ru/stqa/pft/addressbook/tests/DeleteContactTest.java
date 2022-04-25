@@ -13,7 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class DeleteContactTest extends TestBase {
     @BeforeMethod
     public void ensurePredictions(){
-        if (!app.goTo().isThereAContact()) {
+        if (app.db().contacts().size()==0) {
             app.contact().contactCreation(contactInfo);
         }
     }

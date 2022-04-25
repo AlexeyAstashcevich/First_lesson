@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 
 public class ContactDataBuilder {
@@ -124,7 +125,7 @@ public class ContactDataBuilder {
     return this;
   }
 
-  public ContactDataBuilder group(String group) {
+  public ContactDataBuilder group(Set<GroupData> group) {
     contactData.setGroup(group);
     return this;
   }
