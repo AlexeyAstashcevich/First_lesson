@@ -99,8 +99,6 @@ public class ContactData {
   private String allEmails;
   @Transient
   private String allAddress;
-
-
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "address_in_groups",
           joinColumns = @JoinColumn(name = "id"),
@@ -132,8 +130,8 @@ public class ContactData {
     return allEmails;
   }
 
-  public GroupData getGroup() {
-    return new Groups(group).stream().iterator().next();
+  public Groups getGroup() {
+    return new Groups(group);
   }
 
   public void setAllEmails(String allEmails) {
@@ -147,6 +145,7 @@ public class ContactData {
   public void setGroup(Set<GroupData> group) {
     this.group = group;
   }
+
   public void setAllPhones(String allPhones) {
     this.allPhones = allPhones;
   }

@@ -6,12 +6,10 @@ import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.srt.mantis.appmanager.ApplicationManager;
 
 import java.io.IOException;
-import java.util.Properties;
 
 public class TestBase {
 
-  private static Properties properties;
-  protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME), properties);
+  protected final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
   @BeforeSuite(alwaysRun = true)
   public void setUp() throws IOException {

@@ -6,6 +6,8 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.text.CollationElementIterator;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -24,7 +26,7 @@ public class DeleteContactFromGroup extends TestBase {
     @Test
     public void deleteContactFromGroup() {
         Contacts before = app.db().contacts();//in group
-        int id = before.stream().mapToInt(ContactData::getNameId).max().getAsInt();
+        int id = before.stream().mapToInt(ContactData::getNameId).iterator().nextInt();
         app.contact().deleteContactFromGroup(id);
         Contacts after = app.db().contacts();// out of group with this id
         ContactData withoutGroup = before.stream().filter((x) -> x.getNameId() == id).findAny().get();

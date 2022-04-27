@@ -26,7 +26,7 @@ public class AddContactToGroup extends TestBase {
     @Test
     public void addContactToGroup() {
         Contacts before = app.db().contacts();
-        int id = before.stream().mapToInt(ContactData::getNameId).max().getAsInt();
+        int id = before.stream().mapToInt(ContactData::getNameId).iterator().next();
         app.contact().contactToGroup(id);
         Contacts after = app.db().contacts();
         ContactData withoutGroup = before.stream().filter((x) -> x.getNameId() == id).findAny().get();

@@ -19,9 +19,9 @@ public class ApplicationManager {
   WebDriver wd;
 
 
-  public ApplicationManager(String browser, Properties properties) {
+  public ApplicationManager(String browser) {
     this.browser = browser;
-    this.properties = properties;
+    this.properties = new Properties();
   }
 
 
