@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.junit.JUnit4TestRunner;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,10 +15,12 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-  private final String browser;
+  private  String browser;
   private final Properties properties;
   private WebDriver wd;
   private RegistrationHelper registrationHelper;
+  private FtpHelper ftp;
+  private MailHelper mailHelper;
 
 
   public ApplicationManager(String browser) {
@@ -37,6 +38,13 @@ public class ApplicationManager {
     if(wd != null){
       wd.quit();
     }
+  }
+
+  public FtpHelper ftp(){
+    if(ftp == null){
+      ftp = new FtpHelper(this);
+    }
+    return ftp;
   }
 
   private boolean isElementPresent(By by) {
@@ -80,11 +88,19 @@ public class ApplicationManager {
         wd = new ChromeDriver();
       } else if (browser.equals(BrowserType.IE)) {
         wd = new InternetExplorerDriver();
+      }
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         wd.get(properties.getProperty("web.baseUrl"));
-      }
     }
     return wd;
+  }
+
+
+  public MailHelper mailHelper(){
+    if (mailHelper==null){
+      mailHelper= new MailHelper(this);
+    }
+    return mailHelper;
   }
 }
 
