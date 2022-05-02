@@ -24,4 +24,10 @@ public class RegistrationHelper extends HelperBase {
     click(By.cssSelector("span.bigger-110"));
 
   }
+
+  public void changePassword(String user) {
+    click(By.linkText("Управление пользователями"));
+    click(By.linkText(user));
+    click(By.xpath("//input[@value='Сбросить пароль']"));
+  }
 }

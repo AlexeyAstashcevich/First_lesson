@@ -43,6 +43,8 @@ public class JamesHelper {
     closeTelnetSession();
   }
 
+//  public void chooseUser()
+
   public void deleteUser(String name){
     initTelnetSession();
     write("delete "+ name);
