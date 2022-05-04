@@ -18,7 +18,6 @@ public class MailHelper {
     this.app = app;
     wiser = new Wiser();
   }
-
   public List<MailMessage> waitForMail(int count, long timeout){
     long start = System.currentTimeMillis();
     while (System.currentTimeMillis()< start + timeout){

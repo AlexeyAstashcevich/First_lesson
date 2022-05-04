@@ -2,6 +2,10 @@ package ru.stqa.pft.srt.mantis.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import ru.lanwen.verbalregex.VerbalExpression;
+import ru.stqa.pft.srt.mantis.model.MailMessage;
+
+import java.util.List;
 
 public class RegistrationHelper extends HelperBase {
   private WebDriver wd;
@@ -29,5 +33,15 @@ public class RegistrationHelper extends HelperBase {
     click(By.linkText("Управление пользователями"));
     click(By.linkText(user));
     click(By.xpath("//input[@value='Сбросить пароль']"));
+  }
+
+  public String findConfirmationLink(List<MailMessage> mailMessages, String email) {
+    MailMessage mailMessage = mailMessages.stream().filter(m -> m.to.equals(email)).findFirst().get();
+    VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
+    return regex.getText(mailMessage.text);
+  }
+
+  public void enterInAcc(){
+
   }
 }

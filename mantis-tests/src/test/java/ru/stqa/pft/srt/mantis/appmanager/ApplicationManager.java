@@ -8,9 +8,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import ru.lanwen.verbalregex.VerbalExpression;
+import ru.stqa.pft.srt.mantis.model.MailMessage;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +25,7 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
+  private HttpSession httpSession;
 
 
   public ApplicationManager(String browser) {
@@ -94,6 +98,19 @@ public class ApplicationManager {
         wd.get(properties.getProperty("web.baseUrl"));
     }
     return wd;
+  }
+
+  private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
+    MailMessage mailMessage = mailMessages.stream().filter(m -> m.to.equals(email)).findFirst().get();
+    VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
+    return regex.getText(mailMessage.text);
+  }
+
+  public HttpSession httpSession(){
+    if(httpSession == null){
+      httpSession= new HttpSession(this);
+    }
+    return httpSession;
   }
 
 
