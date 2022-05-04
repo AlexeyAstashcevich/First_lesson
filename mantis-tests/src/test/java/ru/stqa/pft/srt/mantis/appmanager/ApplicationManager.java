@@ -18,8 +18,8 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-  private  String browser;
   private final Properties properties;
+  private final String browser;
   private WebDriver wd;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
@@ -40,13 +40,13 @@ public class ApplicationManager {
   }
 
   public void stop() {
-    if(wd != null){
+    if (wd != null) {
       wd.quit();
     }
   }
 
-  public FtpHelper ftp(){
-    if(ftp == null){
+  public FtpHelper ftp() {
+    if (ftp == null) {
       ftp = new FtpHelper(this);
     }
     return ftp;
@@ -86,7 +86,7 @@ public class ApplicationManager {
   }
 
   public WebDriver getDriver() {
-    if(wd== null){
+    if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
       } else if (browser.equals(BrowserType.CHROME)) {
@@ -94,8 +94,8 @@ public class ApplicationManager {
       } else if (browser.equals(BrowserType.IE)) {
         wd = new InternetExplorerDriver();
       }
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("web.baseUrl"));
+      wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      wd.get(properties.getProperty("web.baseUrl"));
     }
     return wd;
   }
@@ -106,24 +106,24 @@ public class ApplicationManager {
     return regex.getText(mailMessage.text);
   }
 
-  public HttpSession httpSession(){
-    if(httpSession == null){
-      httpSession= new HttpSession(this);
+  public HttpSession httpSession() {
+    if (httpSession == null) {
+      httpSession = new HttpSession(this);
     }
     return httpSession;
   }
 
 
-  public MailHelper mailHelper(){
-    if (mailHelper==null){
-      mailHelper= new MailHelper(this);
+  public MailHelper mailHelper() {
+    if (mailHelper == null) {
+      mailHelper = new MailHelper(this);
     }
     return mailHelper;
   }
 
-  public JamesHelper james(){
-    if(jamesHelper == null){
-      jamesHelper= new JamesHelper(this);
+  public JamesHelper james() {
+    if (jamesHelper == null) {
+      jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
   }

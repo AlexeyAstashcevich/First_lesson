@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HttpSession {
-  private CloseableHttpClient httpClient;
-  private ApplicationManager app;
+  private final CloseableHttpClient httpClient;
+  private final ApplicationManager app;
 
   public HttpSession(ApplicationManager app) {
     this.app = app;
@@ -44,6 +44,7 @@ public class HttpSession {
       response.close();
     }
   }
+
   public boolean isLoggedInAss(String username) throws IOException {
     HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
     CloseableHttpResponse response = httpClient.execute(get);

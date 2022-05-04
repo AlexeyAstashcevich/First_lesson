@@ -8,12 +8,14 @@ import ru.stqa.pft.srt.mantis.model.MailMessage;
 import java.util.List;
 
 public class RegistrationHelper extends HelperBase {
-  private WebDriver wd;
+  private final WebDriver wd;
+
   public RegistrationHelper(ApplicationManager app) {
     super(app);
     this.wd = app.getDriver();
   }
-  public void start(String username, String email){
+
+  public void start(String username, String email) {
     wd.get(app.getProperty("web.baseUrl") + "/signup_page.php");
     type(username, By.name("username"));
     type(email, By.name("email"));
@@ -41,7 +43,12 @@ public class RegistrationHelper extends HelperBase {
     return regex.getText(mailMessage.text);
   }
 
-  public void enterInAcc(){
-
+  public void login(String username, String password) {
+    wd.get(app.getProperty("web.baseUrl"));
+    type(username, By.name("username"));
+    click(By.cssSelector("input[value='Вход']"));
+    type(password, By.name("password"));
+    click(By.cssSelector("input[value='Вход']"));
   }
+
 }

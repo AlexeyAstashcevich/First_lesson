@@ -7,8 +7,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class FtpHelper {
-  private  FTPClient ftp;
   private final ApplicationManager app;
+  private final FTPClient ftp;
 
   public FtpHelper(ApplicationManager app) {
     this.app = app;
@@ -20,7 +20,7 @@ public class FtpHelper {
     ftp.connect(app.getProperty("ftp_host"));
     ftp.login(app.getProperty("ftp_login"), app.getProperty("ftp_password"));
     ftp.deleteFile(backup);
-    ftp.rename(target,backup);
+    ftp.rename(target, backup);
     ftp.enterLocalPassiveMode();
     ftp.storeFile(target, new FileInputStream(file));
     ftp.disconnect();
@@ -30,7 +30,7 @@ public class FtpHelper {
     ftp.connect(app.getProperty("ftp_host"));
     ftp.login(app.getProperty("ftp_login"), app.getProperty("ftp_password"));
     ftp.deleteFile(target);
-    ftp.rename(backup,target);
+    ftp.rename(backup, target);
     ftp.disconnect();
   }
 }

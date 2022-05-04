@@ -1,10 +1,7 @@
 package ru.stqa.pft.srt.mantis.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.srt.mantis.model.MailMessage;
 
 import javax.mail.MessagingException;
@@ -31,7 +28,6 @@ public class RegistrationTest extends TestBase {
     app.registration().finish(confirmationLink, password, username);
     Assert.assertTrue(app.newSession().login(username, password));
   }
-
 
 
   //@AfterMethod(alwaysRun = true)

@@ -9,7 +9,7 @@ import ru.stqa.pft.srt.mantis.model.MailMessage;
 import java.io.IOException;
 import java.util.List;
 
-public class SwitchPasswordTes extends TestBase{
+public class SwitchPasswordTes extends TestBase {
 
   @BeforeMethod
   public void startMailServer() {
@@ -20,10 +20,10 @@ public class SwitchPasswordTes extends TestBase{
   public void switchPassword() throws IOException {
     String user = app.getProperty("user.forChangePassword");
     String password = "password";
-    app.httpSession().login("administrator","rooter");
+    app.registration().login(app.getProperty("web.loginName"), app.getProperty("web.loginPassword"));
     app.registration().changePassword(user);
-    List<MailMessage> mailMessages = app.mailHelper().waitForMail(2, 10000);
-    String confirmationLink =app.registration().findConfirmationLink(mailMessages, "user1651499117407@localhost");
+    List<MailMessage> mailMessages = app.mailHelper().waitForMail(1, 100000);
+    String confirmationLink = app.registration().findConfirmationLink(mailMessages, user + "@localhost");
     app.registration().finish(confirmationLink, password, user);
     Assert.assertTrue(app.newSession().login(user, password));
   }

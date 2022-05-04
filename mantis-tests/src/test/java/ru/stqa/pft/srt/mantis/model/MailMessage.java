@@ -1,11 +1,11 @@
 package ru.stqa.pft.srt.mantis.model;
 
 public class MailMessage {
-    public String to;
-    public String text;
+  public String to;
+  public String text;
 
-    public  MailMessage(String to, String text){
-      this.text= text;
-      this.to = to;
-    }
+  public MailMessage(String to, String text) {
+    this.text = text;
+    this.to = to;
+  }
 }
