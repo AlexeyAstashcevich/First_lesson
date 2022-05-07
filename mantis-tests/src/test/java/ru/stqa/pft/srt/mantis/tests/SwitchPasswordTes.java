@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.stqa.pft.srt.mantis.model.ContactData;
 import ru.stqa.pft.srt.mantis.model.MailMessage;
 
 import java.io.IOException;
@@ -18,7 +19,8 @@ public class SwitchPasswordTes extends TestBase {
 
   @Test
   public void switchPassword() throws IOException {
-    String user = app.getProperty("user.forChangePassword");
+    List<ContactData> userData = app.dbHelper().contacts();
+    String user = userData.stream().filter(x -> !x.equals("administrator")).findAny().toString();
     String password = "password";
     app.registration().login(app.getProperty("web.loginName"), app.getProperty("web.loginPassword"));
     app.registration().changePassword(user);

@@ -22,7 +22,7 @@ public class RegistrationTest extends TestBase {
     String password = "password";
     app.james().createUser(username, password);
     app.registration().start(username, email);
-// List<MailMessage> mailMessages = app.mailHelper().waitForMail(2, 10000);
+//  List<MailMessage> mailMessages = app.mailHelper().waitForMail(2, 10000);
     List<MailMessage> mailMessages = app.james().waitForMail(username, password, 60000);
     String confirmationLink = app.registration().findConfirmationLink(mailMessages, email);
     app.registration().finish(confirmationLink, password, username);
