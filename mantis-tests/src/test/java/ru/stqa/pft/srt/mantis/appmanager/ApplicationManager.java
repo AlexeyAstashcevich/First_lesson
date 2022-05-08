@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.srt.mantis.model.MailMessage;
 
@@ -28,6 +30,7 @@ public class ApplicationManager {
   private HttpSession httpSession;
   private DbHelper dbHelper;
   private SoapHelper soapHelper;
+
 
 
   public ApplicationManager(String browser) {
@@ -115,12 +118,10 @@ public class ApplicationManager {
     return httpSession;
   }
 
-  public DbHelper dbHelper(){
-    if(dbHelper== null){
-      dbHelper= new DbHelper();
-    }
+  public DbHelper dbHelper() {
     return dbHelper;
   }
+
   public MailHelper mailHelper() {
     if (mailHelper == null) {
       mailHelper = new MailHelper(this);
