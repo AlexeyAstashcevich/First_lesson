@@ -1,0 +1,39 @@
+414  [main] DEBUG org.testng.TestNG - suiteXmlPath: "C:\Users\Kakaperduk\AppData\Local\JetBrains\IdeaIC2021.3\temp-testng-customsuite.xml"
+993  [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE TestBase.setUp()[pri:0, instance:null] 1548418593
+993  [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+997  [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+997  [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+997  [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+998  [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE TestBase.tearDown()[pri:0, instance:null] -972811558
+998  [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+998  [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+998  [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+998  [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+1004 [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE TestBase.loggerStart(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:null] -1890316212
+1004 [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+1004 [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+1004 [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+1004 [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+1005 [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE TestBase.loggerStop(java.lang.reflect.Method)[pri:0, instance:null] 1164239180
+1005 [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+1005 [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+1005 [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+1005 [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+1006 [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE TestBase.setUp()[pri:0, instance:ru.stqa.pft.srt.mantis.tests.LoginTest@15bb6bea] 1120940521
+1007 [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+1007 [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+1007 [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+1007 [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+1008 [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE LoginTest.tesLogin()[pri:0, instance:ru.stqa.pft.srt.mantis.tests.LoginTest@15bb6bea] -91088365
+1008 [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+1008 [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+1008 [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+1008 [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+1009 [main] DEBUG org.testng.internal.Graph - [Graph] ADDING NODE TestBase.tearDown()[pri:0, instance:ru.stqa.pft.srt.mantis.tests.LoginTest@15bb6bea] 272217168
+1009 [main] DEBUG org.testng.internal.Graph - [Graph] ================ SORTING
+1009 [main] DEBUG org.testng.internal.Graph - [Graph] =============== DONE SORTING
+1009 [main] DEBUG org.testng.internal.Graph - [Graph] ====== SORTED NODES
+1009 [main] DEBUG org.testng.internal.Graph - [Graph] ====== END SORTED NODES
+1013 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Kakaperduk\AppData\Local\JetBrains\IdeaIC2021.3\temp-testng-customsuite.xml
+

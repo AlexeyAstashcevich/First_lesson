@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class TestBase {
 
-  protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+  protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
   protected ContactData contactInfo;
   protected ContactData modificatedInfo;
   private final Properties properties;
