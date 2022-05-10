@@ -1,6 +1,6 @@
 <?php
 $g_hostname               = 'localhost';
-$g_db_type                = 'mysql';
+$g_db_type                = 'mysqli';
 $g_database_name          = 'bugtracker';
 $g_db_username            = 'root';
 $g_db_password            = '';
@@ -10,4 +10,4 @@ $g_smtp_host              = 'localhost';
 
 $g_default_timezone       = 'Europe/Berlin';
 
-$g_crypto_master_salt     = 'fEY2Qs2YUpA+YqV8dhVB4GXHbihjtSWTINsdLRcISGw=';
+$g_crypto_master_salt     = 'watxi114IFoaiYJ69NjwBvBSxg3LIGNCgLw3cuaKtsc=';
