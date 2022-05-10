@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import java.util.Set;
 
 public class SoapTests extends TestBase {
-  @Test(alwaysRun = false)
+  @Test
   public void testGetProject() throws MalformedURLException, ServiceException, RemoteException {
     Set<Project> projects = app.soap().getProject();
     System.out.println(projects.size());
