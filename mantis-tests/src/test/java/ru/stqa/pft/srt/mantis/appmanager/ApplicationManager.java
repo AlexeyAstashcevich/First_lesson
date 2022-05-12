@@ -26,13 +26,14 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
   private HttpSession httpSession;
-  private  DbHelper dbHelper;
+  private DbHelper dbHelper;
   private SoapHelper soapHelper;
 
 
   public ApplicationManager(String browser) {
     this.browser = browser;
     this.properties = new Properties();
+    dbHelper = new DbHelper();
   }
 
 

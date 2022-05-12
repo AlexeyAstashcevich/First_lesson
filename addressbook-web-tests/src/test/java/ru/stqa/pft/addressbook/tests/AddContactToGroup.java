@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -9,9 +10,6 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AddContactToGroup extends TestBase {
   @BeforeMethod
@@ -32,6 +30,17 @@ public class AddContactToGroup extends TestBase {
     Contacts before = app.db().contacts();
     Set<ContactInGroup> groups = app.db().contactsInGroups();
     Set<Integer> run = new HashSet<>();
+    isContactInGroup(before, groups, run);
+    int id = run.stream().iterator().next();
+    app.contact().contactToGroup(id);
+    Contacts after = app.db().contacts();
+    Set<ContactInGroup> groupsAfter = app.db().contactsInGroups();
+    Assert.assertEquals(after.stream().filter(x -> x.getNameId() == id).mapToInt(ContactData::getNameId).findAny().getAsInt()
+            , groupsAfter.stream().filter(x -> x.getId() == id).mapToInt(x -> x.getId()).findAny().getAsInt());
+  }
+
+
+  private void isContactInGroup(Contacts before, Set<ContactInGroup> groups, Set<Integer> run) {
     for (ContactData object : before) {
       run.add(object.getNameId());
     }
@@ -50,14 +59,5 @@ public class AddContactToGroup extends TestBase {
       run.add(id);
       before.add(contact.stream().filter((x) -> x.getNameId() == id).findAny().get());
     }
-
-    int id = run.stream().iterator().next();
-    app.contact().contactToGroup(id);
-    Contacts after = app.db().contacts();
-    ContactData withoutGroup = before.stream().filter((x) -> x.getNameId() == id).findAny().get();
-    ContactData withGroup = after.stream().filter((x) -> x.getNameId() == id).findAny().get();
-    before.remove(withoutGroup);
-    before.add(withGroup);
-    assertThat(before, equalTo(after));
   }
 }

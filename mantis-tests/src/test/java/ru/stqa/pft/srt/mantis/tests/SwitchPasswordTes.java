@@ -20,7 +20,7 @@ public class SwitchPasswordTes extends TestBase {
   @Test
   public void switchPassword() throws IOException {
     List<ContactData> userData = app.dbHelper().contacts();
-    String user = userData.stream().filter(x -> !x.equals("administrator")).findAny().toString();
+    String user = userData.stream().filter(x->!x.getUser().equals("administrator")).findAny().get().getUser();
     String password = "password";
     app.registration().login(app.getProperty("web.loginName"), app.getProperty("web.loginPassword"));
     app.registration().changePassword(user);

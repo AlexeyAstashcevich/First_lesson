@@ -32,6 +32,7 @@ public class RegistrationHelper extends HelperBase {
   }
 
   public void changePassword(String user) {
+    click(By.cssSelector("i.fa.fa-gears.menu-icon"));
     click(By.linkText("Управление пользователями"));
     click(By.linkText(user));
     click(By.xpath("//input[@value='Сбросить пароль']"));

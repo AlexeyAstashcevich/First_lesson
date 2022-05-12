@@ -3,22 +3,20 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.ContactDataBuilder;
-import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.*;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
   GroupHelper groupHelper = new GroupHelper(wd);
   NavigationHelper navigationHelper = new NavigationHelper(wd);
   private Contacts contactsCache = null;
-  DbHelper dbHelper;
+  DbHelper db;
 
   public ContactHelper(WebDriver wd) {
 
