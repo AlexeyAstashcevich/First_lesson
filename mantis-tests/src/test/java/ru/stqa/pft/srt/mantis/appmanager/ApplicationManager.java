@@ -1,5 +1,6 @@
 package ru.stqa.pft.srt.mantis.appmanager;
 
+import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
@@ -28,6 +29,7 @@ public class ApplicationManager {
   private HttpSession httpSession;
   private DbHelper dbHelper;
   private SoapHelper soapHelper;
+  private MantisConnectPortType mantis;
 
 
   public ApplicationManager(String browser) {

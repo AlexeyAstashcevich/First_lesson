@@ -3,13 +3,14 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import ru.stqa.pft.addressbook.model.*;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.ContactDataBuilder;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -191,16 +192,18 @@ public class ContactHelper extends HelperBase {
   public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
-  public void contactToGroup(int id){
+
+  public void contactToGroup(int id) {
+    navigationHelper.goHome();
     navigationHelper.chooseContactById(id);
     navigationHelper.addToGroup();
   }
 
 
-  public void deleteContactFromGroup(int id){
+  public void deleteContactFromGroup(int id) {
     navigationHelper.goHome();
-        navigationHelper.chooseGroupForContacts();
-    if (!isElemrntPresent(By.name("selected[]"))){
+    navigationHelper.chooseGroupForContacts();
+    if (!isElemrntPresent(By.name("selected[]"))) {
       navigationHelper.goHome();
       contactToGroup(id);
       navigationHelper.goHomeHeadear();

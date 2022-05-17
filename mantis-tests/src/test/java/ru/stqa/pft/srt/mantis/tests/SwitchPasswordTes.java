@@ -20,12 +20,14 @@ public class SwitchPasswordTes extends TestBase {
   @Test
   public void switchPassword() throws IOException {
     List<ContactData> userData = app.dbHelper().contacts();
+    System.out.println(userData);
     String user = userData.stream().filter(x->!x.getUser().equals("administrator")).findAny().get().getUser();
+    String mail = userData.stream().filter(x->x.getEmail().contains(user)).findAny().get().getEmail();
     String password = "password";
     app.registration().login(app.getProperty("web.loginName"), app.getProperty("web.loginPassword"));
     app.registration().changePassword(user);
     List<MailMessage> mailMessages = app.mailHelper().waitForMail(1, 100000);
-    String confirmationLink = app.registration().findConfirmationLink(mailMessages, user + "@localhost");
+    String confirmationLink = app.registration().findConfirmationLink(mailMessages, mail);
     app.registration().finish(confirmationLink, password, user);
     Assert.assertTrue(app.newSession().login(user, password));
   }

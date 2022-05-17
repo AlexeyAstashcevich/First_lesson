@@ -16,6 +16,18 @@ public class ContactData {
   @Column(name = "username")
   private String user;
 
+  @Column(name = "email")
+  private String email;
+
+  public String getEmail() {
+    return email;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
   public String getUser() {
     return user;
   }
@@ -24,6 +36,7 @@ public class ContactData {
     this.user = user;
     return this;
   }
+
   public int getId() {
     return Id;
   }
