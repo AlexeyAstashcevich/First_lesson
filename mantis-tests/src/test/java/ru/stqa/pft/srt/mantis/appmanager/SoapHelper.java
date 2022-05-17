@@ -48,7 +48,7 @@ public class SoapHelper {
     String[] category = mc.mc_project_get_categories("administrator", "rooter", BigInteger.valueOf(issue.getProject().getId()));
     IssueData issueData = new IssueData();
     issueData.setSummary(issue.getSummary());
-    issueData.setSummary(issue.getDescription());
+    issueData.setDescription(issue.getDescription());
     issueData.setProject(new ObjectRef(BigInteger.valueOf(issue.getProject().getId()), issue.getProject().getName()));
     issueData.setCategory(category[0]);
     BigInteger issued = mc.mc_issue_add("administrator", "rooter", issueData);
@@ -60,7 +60,7 @@ public class SoapHelper {
                     .withName(createdIssueData.getProject().getName()));
   }
 
-  private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
+  public MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
     SimpleProvider clientConfig = new SimpleProvider();
     AxisLogHandler logHandler = new AxisLogHandler();
     SimpleChain reqHandler = new SimpleChain();
