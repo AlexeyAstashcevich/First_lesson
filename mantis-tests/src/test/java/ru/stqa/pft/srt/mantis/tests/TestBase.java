@@ -31,11 +31,14 @@ public class TestBase {
   public void loggerStart(Method m, Object[] p){
     logger.info("Start test " + m.getName() + Arrays.asList(p));
   }
-  public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+  public boolean isIssueOpen(int issueId) throws RemoteException, MalformedURLException, javax.xml.rpc.ServiceException {
     MantisConnectPortType mc = app.soap().getMantisConnect();
     IssueData issue = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issueId));
-    return issue.getStatus().getName().equals("Open");
+    if (!issue.getStatus().getName().equals("resolved")) {
+      return true;
+    } else return false;
   }
+
 
   public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
     if (isIssueOpen(issueId)) {
