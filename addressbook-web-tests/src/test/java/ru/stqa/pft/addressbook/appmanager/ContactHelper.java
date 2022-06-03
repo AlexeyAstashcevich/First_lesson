@@ -166,6 +166,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void contactModification(ContactData modificatedInfo) {
+    navigationHelper.goHome();
     navigationHelper.initContactModification(modificatedInfo.getNameId());
     fillNamesForms(modificatedInfo);
     navigationHelper.addPhoto(modificatedInfo);
