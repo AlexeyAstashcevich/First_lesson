@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.ContactDataBuilder;
 import ru.stqa.pft.addressbook.model.Contacts;
@@ -189,6 +190,28 @@ public class ContactHelper extends HelperBase {
     contactsCache = null;
   }
 
+  public void contactCreations(ContactData contactData) {
+    navigationHelper.addNewContact();
+    fillNamesForms(contactData);
+    if (contactData.getPhoto() != null) {
+      navigationHelper.addPhoto(contactData);
+      fillCompanyForms(contactData);
+      fillPhonesForms(contactData);
+      fillEmailsForms(contactData);
+      navigationHelper.fillHomepage(contactData);
+      if (contactData.getBirthday() != null) {
+        fillBirthday(contactData.getBirthday());
+        fillAnyversary(contactData.getAnniversary());
+      }
+      fillSecondaryAddress(contactData);
+      fillSecondaryPhone(contactData);
+      fillNotes(contactData);
+    }
+    navigationHelper.submitNewContact();
+    navigationHelper.goToHomepage();
+    contactsCache = null;
+  }
+
   public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
@@ -211,6 +234,11 @@ public class ContactHelper extends HelperBase {
     }
     navigationHelper.chooseContactById(id);
     navigationHelper.remooveFromGroup();
+  }
+
+  public boolean checkContactInGroup(Contacts contacts, int id){
+    contacts.stream().filter(x->x.getNameId()==id);
+    return true;
   }
 }
 
