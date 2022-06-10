@@ -236,10 +236,6 @@ public class ContactHelper extends HelperBase {
     navigationHelper.remooveFromGroup();
   }
 
-  public boolean checkContactInGroup(Contacts contacts, int id){
-    contacts.stream().filter(x->x.getNameId()==id);
-    return true;
-  }
 }
 
 
