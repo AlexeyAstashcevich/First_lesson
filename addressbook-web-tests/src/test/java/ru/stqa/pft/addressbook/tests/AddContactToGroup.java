@@ -28,17 +28,17 @@ public class AddContactToGroup extends TestBase {
 
   @Test
   public void addContactToGroup() {
-    Contacts before = app.db().contacts();
-    Set<ContactInGroup> groups = app.db().contactsInGroups();
-    Set<Integer> run = new HashSet<>();
-    isContactInGroup(before, groups, run);
-    int id = run.stream().iterator().next();
+    Contacts allContactsListBeforeTheTest = app.db().contacts();
+    Set<ContactInGroup> contactsInGroupsBeforeTheTest = app.db().contactsInGroups();
+    Set<Integer> contactsWithoutGroupBeforeTheTest = new HashSet<>();
+    isContactInGroup(allContactsListBeforeTheTest, contactsInGroupsBeforeTheTest, contactsWithoutGroupBeforeTheTest);
+    int id = contactsWithoutGroupBeforeTheTest.stream().iterator().next();
     app.contact().contactToGroup(id);
-    Contacts after = app.db().contacts();
-    Set<ContactInGroup> groupsAfter = app.db().contactsInGroups();
-    Set<Integer> runAfter = new HashSet<>();
-    isContactInGroupAfter(after, groupsAfter, runAfter);
-    Assert.assertFalse(runAfter.contains(after.stream().filter(x -> x.getNameId() == id).findAny().get()));
+    Contacts AllContactsListAfterTheTest = app.db().contacts();
+    Set<ContactInGroup> contactsWithoutGroupsAfterTheTest = app.db().contactsInGroups();
+    Set<Integer> contactsWithoutGrupsAfterTheTest = new HashSet<>();
+    isContactInGroupAfter(AllContactsListAfterTheTest, contactsWithoutGroupsAfterTheTest, contactsWithoutGrupsAfterTheTest);
+    Assert.assertFalse(contactsWithoutGrupsAfterTheTest.contains(AllContactsListAfterTheTest.stream().filter(x -> x.getNameId() == id).findAny().get()));
 
   }
 
