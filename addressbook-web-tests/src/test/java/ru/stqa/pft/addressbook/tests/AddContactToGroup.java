@@ -42,37 +42,37 @@ public class AddContactToGroup extends TestBase {
 
   }
 
-  private void isContactInGroup(Contacts before, Set<ContactInGroup> groups, Set<Integer> run) {
-    for (ContactData object : before) {
-      run.add(object.getNameId());
+  private void isContactInGroup(Contacts listOFContacts, Set<ContactInGroup> contactsFromContactInGroupsTable, Set<Integer> listOfContactWithoutGroup) {
+    for (ContactData object : listOFContacts) {
+      listOfContactWithoutGroup.add(object.getNameId());
     }
 
-    for (ContactInGroup object : groups) {
-      if (run.contains(object.getId())) {
-        run.remove(object.getId());
+    for (ContactInGroup object : contactsFromContactInGroupsTable) {
+      if (listOfContactWithoutGroup.contains(object.getId())) {
+        listOfContactWithoutGroup.remove(object.getId());
       } else {
-        run.add(object.getId());
+        listOfContactWithoutGroup.add(object.getId());
       }
     }
-    if (run.size() == 0) {
+    if (listOfContactWithoutGroup.size() == 0) {
       app.contact().contactCreations(contactInfo);
       Contacts contact = app.db().contacts();
       int id = contact.stream().mapToInt(x -> x.getNameId()).max().getAsInt();
-      run.add(id);
-      before.add(contact.stream().filter((x) -> x.getNameId() == id).findAny().get());
+      listOfContactWithoutGroup.add(id);
+      listOFContacts.add(contact.stream().filter((x) -> x.getNameId() == id).findAny().get());
     }
   }
 
-  private void isContactInGroupAfter(Contacts before, Set<ContactInGroup> groups, Set<Integer> run) {
-    for (ContactData object : before) {
-      run.add(object.getNameId());
+  private void isContactInGroupAfter(Contacts listOFContacts, Set<ContactInGroup> contactsFromContactInGroupsTable, Set<Integer> listOfContactWithoutGroup) {
+    for (ContactData object : listOFContacts) {
+      listOfContactWithoutGroup.add(object.getNameId());
     }
 
-    for (ContactInGroup object : groups) {
-      if (run.contains(object.getId())) {
-        run.remove(object.getId());
+    for (ContactInGroup object : contactsFromContactInGroupsTable) {
+      if (listOfContactWithoutGroup.contains(object.getId())) {
+        listOfContactWithoutGroup.remove(object.getId());
       } else {
-        run.add(object.getId());
+        listOfContactWithoutGroup.add(object.getId());
       }
     }
   }

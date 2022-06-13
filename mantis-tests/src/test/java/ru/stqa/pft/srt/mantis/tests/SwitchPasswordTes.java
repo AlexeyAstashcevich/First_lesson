@@ -21,8 +21,9 @@ public class SwitchPasswordTes extends TestBase {
   public void switchPassword() throws IOException {
     List<ContactData> userData = app.dbHelper().contacts();
     System.out.println(userData);
-    String user = userData.stream().filter(x->!x.getUser().equals("administrator")).findAny().get().getUser();
-    String mail = userData.stream().filter(x->x.getEmail().contains(user)).findAny().get().getEmail();
+    String user = userData.stream().filter(x->!x.getUser().equals(app.getProperty("web.loginName"))).findAny().get().getUser();
+    int userId = userData.stream().filter(x->!x.getUser().equals(app.getProperty("web.loginName"))).findAny().get().getId();
+    String mail = userData.stream().filter(x->x.getId()==userId).findAny().get().getEmail();
     String password = "password";
     app.registration().login(app.getProperty("web.loginName"), app.getProperty("web.loginPassword"));
     app.registration().changePassword(user);
