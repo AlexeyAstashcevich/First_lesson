@@ -74,8 +74,6 @@ public class ContactData {
   @Type(type = "text")
   @Column(name = "phone2")
   private String secondaryPhone;
-
-
   @Expose
   @Column(name = "photo")
   @Type(type = "text")
@@ -99,11 +97,12 @@ public class ContactData {
   private String allEmails;
   @Transient
   private String allAddress;
+
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "address_in_groups",
           joinColumns = @JoinColumn(name = "id"),
           inverseJoinColumns = @JoinColumn(name = "group_id"))
-  Set<GroupData> group = new HashSet<>();
+  Set<GroupData> group = new HashSet<GroupData>();
 
   public String getAddress() {
     return allAddress;

@@ -4,9 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.ContactDataBuilder;
-import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.*;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -18,7 +16,6 @@ public class ContactHelper extends HelperBase {
   GroupHelper groupHelper = new GroupHelper(wd);
   NavigationHelper navigationHelper = new NavigationHelper(wd);
   private Contacts contactsCache = null;
-  DbHelper db;
 
   public ContactHelper(WebDriver wd) {
 
@@ -216,10 +213,10 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public void contactToGroup(int id) {
+  public void contactToGroup(int id, String group) {
     navigationHelper.goHome();
     navigationHelper.chooseContactById(id);
-    navigationHelper.addToGroup();
+    navigationHelper.addToGroup(group);
   }
 
 
@@ -228,13 +225,14 @@ public class ContactHelper extends HelperBase {
     navigationHelper.chooseGroupForContacts();
     if (!isElemrntPresent(By.name("selected[]"))) {
       navigationHelper.goHome();
-      contactToGroup(id);
+      contactToGroup(id, null);
       navigationHelper.goHomeHeadear();
       navigationHelper.chooseGroupForContacts();
     }
     navigationHelper.chooseContactById(id);
     navigationHelper.remooveFromGroup();
   }
+
 
 }
 

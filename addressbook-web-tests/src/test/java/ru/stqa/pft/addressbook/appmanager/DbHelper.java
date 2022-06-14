@@ -7,7 +7,6 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.stqa.pft.addressbook.model.*;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -57,6 +56,15 @@ public class DbHelper {
         session.getTransaction().commit();
         session.close();
         return new HashSet<>(result);
+    }
+
+    public Groups groupByName(String groupName) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<Groups> result = session.createQuery("from GroupData where group_name = '" + groupName + "'").list();
+        session.getTransaction().commit();
+        session.close();
+        return result.get(0);
     }
 
 }

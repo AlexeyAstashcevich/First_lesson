@@ -81,7 +81,9 @@ public class NavigationHelper extends HelperBase {
     return isElemrntPresent(By.name("selected[]"));
   }
 
-  public void addToGroup() {
+  public void addToGroup(String group) {
+    click(By.name("to_group"));
+    select(By.name("to_group"), group);
     click(By.name("add"));
   }
 
