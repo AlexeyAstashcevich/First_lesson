@@ -7,6 +7,8 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.util.Set;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 
@@ -30,12 +32,12 @@ public class AddContactToGroup extends TestBase {
     ContactData contactToGroup = contactsBefore.iterator().next();
     int contactId = contactToGroup.getNameId();
     GroupData group = app.db().groups().iterator().next();
-    Contacts contactsInGroup = group.getContacts();
+    Set contactsInGroup = group.getContacts();
     int groupId = group.getId();
     String groupValue = group.getName();
     app.contact().contactToGroup(contactId, groupValue);
     Groups groupsList = app.db().groups();
-    
+
   }
 
 }

@@ -19,42 +19,24 @@ public class GroupData {
   @Column(name = "group_name")
   @Expose
   private String name;
-
   @Column(name = "group_header")
   @Expose
   @Type(type = "text")
   private String header;
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return id == groupData.id && Objects.equals(name, groupData.name) && Objects.equals(header, groupData.header) && Objects.equals(footer, groupData.footer);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, header, footer, id);
-  }
-
   @Column(name = "group_footer")
   @Expose
   @Type(type = "text")
   private String footer;
-
   @Column(name = "group_id")
   @XStreamOmitField
   @Id
   private int id;
+  @ManyToMany(mappedBy = "group")
+  public Set<ContactData> contacts = new HashSet<>();
 
   public Contacts getContacts() {
     return new Contacts(contacts);
   }
-
-  @ManyToMany(mappedBy = "group")
-  public Set<ContactData> contacts = new HashSet<>();
-
 
   public int getId() {
     return id;
@@ -63,14 +45,6 @@ public class GroupData {
   public GroupData withId(int id) {
     this.id = id;
     return this;
-  }
-
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "name='" + name + '\'' +
-            ", id='" + id + '\'' +
-            '}';
   }
 
   public String getName() {
@@ -104,5 +78,28 @@ public class GroupData {
     this.contacts = contacts;
     return this;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupData groupData = (GroupData) o;
+    return id == groupData.id && Objects.equals(name, groupData.name) && Objects.equals(header, groupData.header) && Objects.equals(footer, groupData.footer);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, header, footer, id);
+  }
+
+
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "name='" + name + '\'' +
+            ", id='" + id + '\'' +
+            '}';
+  }
+
 
 }

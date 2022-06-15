@@ -108,19 +108,6 @@ public class ContactData {
     return allAddress;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return creation == that.creation && nameId == that.nameId && Objects.equals(title, that.title) && Objects.equals(company, that.company) && Objects.equals(companyAddress, that.companyAddress) && Objects.equals(email1, that.email1) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(firstname, that.firstname) && Objects.equals(middleName, that.middleName) && Objects.equals(lastname, that.lastname) && Objects.equals(nickname, that.nickname) && Objects.equals(notes, that.notes) && Objects.equals(homePhone, that.homePhone) && Objects.equals(mobilePhone, that.mobilePhone) && Objects.equals(workPhone, that.workPhone) && Objects.equals(fax, that.fax) && Objects.equals(secondaryAdress, that.secondaryAdress) && Objects.equals(secondaryPhone, that.secondaryPhone) && Objects.equals(photo, that.photo) && Objects.equals(homepage, that.homepage) && Objects.equals(group, that.group);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(title, company, companyAddress, email1, email2, email3, firstname, middleName, lastname, nickname, notes, homePhone, mobilePhone, workPhone, fax, secondaryAdress, secondaryPhone, photo, homepage, creation, nameId, group);
-  }
-
   public void setAllAddress(String allAddress) {
     this.allAddress = allAddress;
   }
@@ -342,6 +329,19 @@ public class ContactData {
             ", lastname='" + lastname + '\'' +
             ", nameId=" + nameId +
             '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return creation == that.creation && nameId == that.nameId && Objects.equals(title, that.title) && Objects.equals(company, that.company) && Objects.equals(companyAddress, that.companyAddress) && Objects.equals(email1, that.email1) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(firstname, that.firstname) && Objects.equals(middleName, that.middleName) && Objects.equals(lastname, that.lastname) && Objects.equals(nickname, that.nickname) && Objects.equals(notes, that.notes) && Objects.equals(homePhone, that.homePhone) && Objects.equals(mobilePhone, that.mobilePhone) && Objects.equals(workPhone, that.workPhone) && Objects.equals(fax, that.fax) && Objects.equals(secondaryAdress, that.secondaryAdress) && Objects.equals(secondaryPhone, that.secondaryPhone) && Objects.equals(photo, that.photo) && Objects.equals(homepage, that.homepage) && Objects.equals(group, that.group);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, company, companyAddress, email1, email2, email3, firstname, middleName, lastname, nickname, notes, homePhone, mobilePhone, workPhone, fax, secondaryAdress, secondaryPhone, photo, homepage, creation, nameId, group);
   }
 
 }
