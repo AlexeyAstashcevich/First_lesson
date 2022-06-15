@@ -32,7 +32,7 @@ public class AddContactToGroup extends TestBase {
     ContactData contactToGroup = contactsBefore.iterator().next();
     int contactId = contactToGroup.getNameId();
     GroupData group = app.db().groups().iterator().next();
-    Set contactsInGroup = group.getContacts();
+    Contacts contactsInGroup = group.getContacts();
     int groupId = group.getId();
     String groupValue = group.getName();
     app.contact().contactToGroup(contactId, groupValue);

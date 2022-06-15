@@ -16,90 +16,90 @@ import java.util.Set;
 @Table(name = "group_list")
 public class GroupData {
 
-  @Column(name = "group_name")
-  @Expose
-  private String name;
-  @Column(name = "group_header")
-  @Expose
-  @Type(type = "text")
-  private String header;
-  @Column(name = "group_footer")
-  @Expose
-  @Type(type = "text")
-  private String footer;
-  @Column(name = "group_id")
-  @XStreamOmitField
-  @Id
-  private int id;
-  @ManyToMany(mappedBy = "group")
-  public Set<ContactData> contacts = new HashSet<>();
+    @Column(name = "group_name")
+    @Expose
+    private String name;
+    @Column(name = "group_header")
+    @Expose
+    @Type(type = "text")
+    private String header;
+    @Column(name = "group_footer")
+    @Expose
+    @Type(type = "text")
+    private String footer;
+    @Column(name = "group_id")
+    @XStreamOmitField
+    @Id
+    private int id;
+    @ManyToMany(mappedBy = "group")
+    public Set<ContactData> contacts = new HashSet<>();
 
-  public Contacts getContacts() {
-    return new Contacts(contacts);
-  }
+    public Contacts getContacts() {
+        return new Contacts(contacts);
+    }
 
-  public int getId() {
-    return id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public GroupData withId(int id) {
-    this.id = id;
-    return this;
-  }
+    public GroupData withId(int id) {
+        this.id = id;
+        return this;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public GroupData withName(String name) {
-    this.name = name;
-    return this;
-  }
+    public GroupData withName(String name) {
+        this.name = name;
+        return this;
+    }
 
-  public String getHeader() {
-    return header;
-  }
+    public String getHeader() {
+        return header;
+    }
 
-  public GroupData withHeader(String header) {
-    this.header = header;
-    return this;
-  }
+    public GroupData withHeader(String header) {
+        this.header = header;
+        return this;
+    }
 
-  public String getFooter() {
-    return footer;
-  }
+    public String getFooter() {
+        return footer;
+    }
 
-  public GroupData withFooter(String footer) {
-    this.footer = footer;
-    return this;
-  }
+    public GroupData withFooter(String footer) {
+        this.footer = footer;
+        return this;
+    }
 
-  public GroupData withContacts(Set<ContactData> contacts) {
-    this.contacts = contacts;
-    return this;
-  }
+    public GroupData withContacts(Set<ContactData> contacts) {
+        this.contacts = contacts;
+        return this;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    GroupData groupData = (GroupData) o;
-    return id == groupData.id && Objects.equals(name, groupData.name) && Objects.equals(header, groupData.header) && Objects.equals(footer, groupData.footer);
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GroupData groupData = (GroupData) o;
+        return id == groupData.id && Objects.equals(name, groupData.name) && Objects.equals(header, groupData.header) && Objects.equals(footer, groupData.footer);
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, header, footer, id);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, header, footer, id);
+    }
 
 
-  @Override
-  public String toString() {
-    return "GroupData{" +
-            "name='" + name + '\'' +
-            ", id='" + id + '\'' +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "GroupData{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 
 
 }
