@@ -31,7 +31,7 @@ public class GroupData {
     @XStreamOmitField
     @Id
     private int id;
-    @ManyToMany(mappedBy = "group")
+    @ManyToMany(mappedBy = "group",fetch = FetchType.EAGER)
     public Set<ContactData> contacts = new HashSet<>();
 
     public Contacts getContacts() {

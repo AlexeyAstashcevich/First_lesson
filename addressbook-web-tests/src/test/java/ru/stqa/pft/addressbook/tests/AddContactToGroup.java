@@ -1,15 +1,15 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.ContactInGroup;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import static org.testng.AssertJUnit.assertTrue;
 
 
 public class AddContactToGroup extends TestBase {
@@ -29,15 +29,38 @@ public class AddContactToGroup extends TestBase {
   @Test
   public void addContactToGroup() {
     Contacts contactsBefore = app.db().contacts();
-    ContactData contactToGroup = contactsBefore.iterator().next();
-    int contactId = contactToGroup.getNameId();
+    Set<ContactInGroup> contactsFromContactInGroupsTable = app.db().contactsInGroups();
+    Set<Integer> listOfContactWithoutGroup = new HashSet<>();
+    isContactInGroup(contactsBefore, contactsFromContactInGroupsTable, listOfContactWithoutGroup);
+    int contactId = listOfContactWithoutGroup.iterator().next();
     GroupData group = app.db().groups().iterator().next();
     Contacts contactsInGroup = group.getContacts();
     int groupId = group.getId();
     String groupValue = group.getName();
     app.contact().contactToGroup(contactId, groupValue);
-    Groups groupsList = app.db().groups();
+    Contacts contactsAfterAdd = app.db().groups().stream().filter(x -> x.getId() == groupId).findAny().get().getContacts();
+    Assert.assertEquals(contactsAfterAdd,
+            contactsInGroup.withAdded(contactsAfterAdd.stream().filter(x -> x.getNameId() == contactId).findAny().get()));
+  }
 
+  private void isContactInGroup(Contacts listOFContacts, Set<ContactInGroup> contactsFromContactInGroupsTable, Set<Integer> listOfContactWithoutGroup) {
+    for (ContactData object : listOFContacts) {
+      listOfContactWithoutGroup.add(object.getNameId());
+    }
+    for (ContactInGroup object : contactsFromContactInGroupsTable) {
+      if (listOfContactWithoutGroup.contains(object.getId())) {
+        listOfContactWithoutGroup.remove(object.getId());
+      } else {
+        listOfContactWithoutGroup.add(object.getId());
+      }
+      if (listOfContactWithoutGroup.size() == 0) {
+        app.contact().contactCreations(contactInfo);
+        Contacts contact = app.db().contacts();
+        int id = contact.stream().mapToInt(x -> x.getNameId()).max().getAsInt();
+        listOfContactWithoutGroup.add(id);
+        listOFContacts.add(contact.stream().filter((x) -> x.getNameId() == id).findAny().get());
+      }
+    }
   }
 
 }
