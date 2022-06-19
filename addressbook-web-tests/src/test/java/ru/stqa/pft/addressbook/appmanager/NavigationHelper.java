@@ -87,9 +87,9 @@ public class NavigationHelper extends HelperBase {
     click(By.name("add"));
   }
 
-  public void chooseGroupForContacts() {
+  public void chooseGroupForContacts(String group) {
     click(By.name("group"));
-    select(By.name("group"),"Test 0");
+    select(By.name("group"), group);
    // new Select(wd.findElement(By.name("group"))).selectByVisibleText("Test 0");
   }
 

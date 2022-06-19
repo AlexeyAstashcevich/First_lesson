@@ -220,14 +220,14 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void deleteContactFromGroup(int id) {
+  public void deleteContactFromGroup(int id, String group) {
     navigationHelper.goHome();
-    navigationHelper.chooseGroupForContacts();
+    navigationHelper.chooseGroupForContacts(group);
     if (!isElemrntPresent(By.name("selected[]"))) {
       navigationHelper.goHome();
       contactToGroup(id, null);
       navigationHelper.goHomeHeadear();
-      navigationHelper.chooseGroupForContacts();
+      navigationHelper.chooseGroupForContacts(group);
     }
     navigationHelper.chooseContactById(id);
     navigationHelper.remooveFromGroup();
