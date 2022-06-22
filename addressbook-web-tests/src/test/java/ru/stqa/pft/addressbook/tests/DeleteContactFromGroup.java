@@ -9,6 +9,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class DeleteContactFromGroup extends TestBase {
   @BeforeMethod
@@ -36,11 +37,9 @@ public class DeleteContactFromGroup extends TestBase {
     int contactId = contact.getId();
     int groupId = contact.getGroupId();
     String group = groups.stream().filter(x -> x.getId() == groupId).findAny().get().getName();
-    Contacts contactsInGroup = groups.stream().filter(x -> x.getId() == groupId).findAny().get().getContacts();
     app.contact().deleteContactFromGroup(contactId, group);
     Contacts contactsAfterDeleted = app.db().groups().stream().filter(x -> x.getId() == groupId).findAny().get().getContacts();
-    Assert.assertEquals(contactsAfterDeleted,
-            contactsInGroup.without(contactsInGroup.stream().filter(x -> x.getNameId() == contactId).findAny().get()));
+    Assert.assertFalse(contactsAfterDeleted.stream().map(x->x.getNameId()).collect(Collectors.toList()).contains(contactId));
   }
 }
 

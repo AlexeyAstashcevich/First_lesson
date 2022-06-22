@@ -10,6 +10,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class AddContactToGroup extends TestBase {
@@ -34,13 +35,11 @@ public class AddContactToGroup extends TestBase {
     isContactInGroup(contactsBefore, contactsFromContactInGroupsTable, listOfContactWithoutGroup);
     int contactId = listOfContactWithoutGroup.iterator().next();
     GroupData group = app.db().groups().iterator().next();
-    Contacts contactsInGroup = group.getContacts();
     int groupId = group.getId();
     String groupValue = group.getName();
     app.contact().contactToGroup(contactId, groupValue);
     Contacts contactsAfterAdd = app.db().groups().stream().filter(x -> x.getId() == groupId).findAny().get().getContacts();
-    Assert.assertEquals(contactsAfterAdd,
-            contactsInGroup.withAdded(contactsAfterAdd.stream().filter(x -> x.getNameId() == contactId).findAny().get()));
+    Assert.assertTrue(contactsAfterAdd.stream().map(x->x.getNameId()).collect(Collectors.toList()).contains(contactId));
   }
 
   private void isContactInGroup(Contacts listOFContacts, Set<ContactInGroup> contactsFromContactInGroupsTable, Set<Integer> listOfContactWithoutGroup) {
